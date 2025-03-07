@@ -1,0 +1,39 @@
+# Opportunities for improvement in the care of adult patients with traumatic brain injury
+
+## Introduction
+
+Trauma - physical injury and the body's associated response - is a major cause of death and disability worldwide. Every year, over four million people die from trauma, and it is the top cause of burden of disease in young people. Traumatic brain injury is a major cause of death and disability in trauma patients. Trauma quality improvement programmes aim to identify opportunities for improvement in the care of trauma patients, and to implement changes to improve patient outcomes. The management of trauma patients once they reach hospital is very time sensitive and error prone, but little is known about potential opportunities for improvement among patients with traumatic brain injury.
+
+## Specific aim
+
+This study aims to describe opportunities for improvement among adult trauma patients with traumatic brain injury, and to assess factors associated with with opportunities for improvement in these patients.
+
+## Work plan
+
+Week 1-2: Finalise work- and project plan. Week 3: Write analysis plan. Week 4-10: Analysis. Week 11-12: Write results. Week 13-14: Write discussion. Week 15-20: Finalise, submit and present thesis.
+
+## Material and methods
+
+This is a registry based cohort study using data from the trauma registry and trauma care quality database at the Karolinska University Hospital in Solna. The trauma registry includes about 14000 patients treated between 2012 and 2023. The trauma care quality database is a subset of the trauma registry and includes about 8000 patients selected for review between 2014 and 2023. The outcome is opportunities for improvement, such as delayed management or technical errors, as identified by a multidisciplinary trauma quality improvement review board and recorded in the trauma care quality database. This project will link the two databases and assess what types of opportunities for improvement occurred in patients arriving with traumatic brain injury and use adjusted logistic regression to assess the association between different factors and the odds of opportunities for improvement. A 5% significance level and 95% confidence levels will be used.
+
+## Collected data/samples
+
+The outcome will be opportunities for improvement, coded as a nominal variable.
+
+## Collected data
+
+All data have already been collected and only need to be analyzed
+
+## Type of project
+
+Clinical study
+
+## Ethical permit and review
+
+Ethical permit is required and exists.
+
+## Ethical review number or submission date
+
+2021-02541, 2021-03531 and 2023-02975-02.
+
+## Other students in related projects
