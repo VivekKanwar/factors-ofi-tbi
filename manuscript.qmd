@@ -6,3 +6,4 @@ format: html
 
 ## Introduction 
 
+"Trauma - physical injury and the body's associated response - is a major cause of death and disability worldwide. Every year, over four million people die from trauma, and it is the top cause of the burden of disease in young people. Traumatic brain injury is a major cause of death and disability in trauma patients. Trauma quality improvement programmes aim to identify opportunities for improvement in the care of trauma patients and to implement changes to improve patient outcomes. The management of trauma patients once they reach the hospital is very time sensitive and error-prone, but little is known about potential opportunities for improvement among patients with traumatic brain injury."
