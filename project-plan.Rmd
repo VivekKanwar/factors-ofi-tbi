@@ -35,7 +35,7 @@ Introduction
 *The background/introduction should summarise the scope of the problem,
 what is known about the problem, what is not known, what specific
 knowledge gap the study is supposed to fill and why this is
-important. It should end be stating the aim of the study. The
+important. It should end be stating the aim of the study. The 
 background should be 4-5 paragraphs long and each paragraph should be
 between 3-5 sentences. Strive to make the paragraphs about the same
 length.*
