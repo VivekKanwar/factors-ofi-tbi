@@ -6,6 +6,7 @@ format: html
 ---
 
 ## Introduction
+<<<<<<< HEAD
 
 Injury has reached epidemic proportions worldwide, disproportionately affecting the most productive and the youngest members of society. Trauma, often synonymously used with serious injury, is defined as a physical injury and the body's associated response.  (1) Furthermore, trauma remains a leading cause of death and disability worldwide, where it is the foremost cause of death among people under the age of 45 and ranks as the fourth leading cause of death across all ages. (2)   # youuu crazyyy
 
@@ -28,3 +29,6 @@ Previous papers at Karolinska University Hospital have contributed to this field
 
 As such, this study aims to identify and describe opportunities for improvement in the care of adult trauma patients with TBI admitted to the ICU, and to examine patient- and process-related factors associated with their occurrence.
 
+git add manuscript.qmd
+git rebase --continue
+git push origin main
