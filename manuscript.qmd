@@ -4,7 +4,6 @@ date: today
 format: html
 # Shorten text to 4-5 paragraphs. Text rn is fot the project description
 ---
-
 ## Introduction
 
 Injury has reached epidemic proportions worldwide, disproportionately affecting the most productive and the youngest members of society. Trauma, often synonymously used with serious injury, is defined as a physical injury and the body's associated response.  (1) Furthermore, trauma remains a leading cause of death and disability worldwide, where it is the foremost cause of death among people under the age of 45 and ranks as the fourth leading cause of death across all ages. (2)   # youuu crazyyy
