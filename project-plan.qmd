@@ -116,7 +116,7 @@ traumatic event with a NISS greater than fifteen are also included. Exclusion cr
 traumatic condition is chronic subdural haematoma, trauma alarms without an underlying traumatic event, patients with
 protected identity, and patients declared dead on arrival. Since these inclusion and exclusion criteria have changed
 over time, patients in this study will be filtered to ensure they fulfil the criteria relevant to the study period
-(Källa SweTrau årsbok 2024). <!--Use the 2023 version instead? Data is up to 2023 --> 
+(Källa SweTrau årsbok 2024). <!--Use the 2023 version instead? Data used is up to 2023 --> 
 
 To identify opportunities for improvement, the trauma registry was linked to the hospital’s local trauma care quality
 database. Linkage was performed using the Swedish personal identity number, after which trauma registry variables and
@@ -132,7 +132,7 @@ Stockholm. This designation requires around-the-clock availability of key servic
 surgery, orthopaedic surgery, anaesthesia and intensive care, as well as diagnostic and interventional radiology and
 consultants from other relevant specialities. (Källa   från American College of surgeons, plus källa  som säger NKS
 har alla dessa saker). Also, the ICU units in Karolinska Universitets sjukhuset are all recognised as Level 3 units
-per the Svenska Föreningen för Anestesi och Intensivvård. (källa )
+per the Svenska Föreningen för Anestesi och Intensivvård. (källa)
 
 Furthermore, the trauma registry includes about 14000 patients admitted between 2012 and 2023. The trauma care
 quality database is a subset of this registry, encompassing approximately 8,000 patients selected for review between
@@ -157,7 +157,7 @@ Included in the study were all adult patients with TBI recorded in the Karolinsk
 combined with an Abbreviated Injury Scale ≥3 for the head region ….  ) Patients were eligible irrespective of level <!-- Definition found in Elins paper, same applies?-->
 of care and were not restricted to intensive care admissions.
 
-Patients younger than 18 years were excluded, as their trauma follows separate clinical care systems and quality <!-- is this true? could not fins source-->
+Patients younger than 18 years were excluded, as their trauma follows separate clinical care systems and quality <!-- is this true? could not find source-->
 review processes that differ from those for adults . Also excluded were patients declared dead on arrival, since
 assessment of opportunities for improvement in these cases is not relevant to the aim of this study. 
 
@@ -189,7 +189,18 @@ Furthermore, the categorical variables include…
 
 Statistical methods
 ----------------
-<!-- unsure --> 
+
+For continuous variables, medians and interquartile ranges (25th-75th  percentiles) are used. Categorical variables
+are presented using the number of patients and their corresponding percentages of the cohort. <!-- If multivariable regression and anlysis will be used, how will we handle missing data? -->
+
+Logistic regression was used to examine the association between patient and process-related factors and OFI. Results
+are reported as Odds Ratio (OR) with 95% confidence interval (CI), and a p-value of <0.05 was used as the threshold
+for statistical significance. To ensure objectivity, all statistical analyses were initially performed on synthetic
+data before being applied to the combined trauma registry and trauma care quality database. Statistical analyses were
+conducted in R version x. 
+
+
+<!-- unsure how the statistical model will work, previous papers mention multivariable logistic regression and one Uni/bivariable regression. How does this work? --> 
 
 
 
