@@ -20,6 +20,8 @@ to the left, or by running `rmarkdown::render("project-plan.Rmd")` in
 the console and you should only see headings -->
 
 
+<!--NEED TO ADD SOURCES IN TEXT-->
+
 Introduction
 ============
 Injury has reached epidemic proportions worldwide, disproportionately affecting the most productive and the youngest
@@ -78,15 +80,15 @@ Despite the presence of systems and guidelines in place for these patients, trau
 deviations from established practice, and treatment delays, all of which may negatively influence outcomes. In
 response, the American College of Surgeons developed the Trauma Quality Improvement Program (TQIP), a risk-adjusted
 benchmarking system designed to assess the quality of trauma care. Through audit filters and peer review, it
-identifies opportunities for improvement (OFI) and ultimately reduces trauma-related mortality (10,11). Previous
-studies and reviews have discussed preventable trauma deaths where recurring patterns occur, namely, delays in
-imaging and care, missed injuries, deviations in care regarding airway-related care, haemorrhage control, and fluid
-management (12–16). Importantly, some of these findings were observed in high-performing level I trauma centres,
-underscoring that even mature systems remain vulnerable to error. Furthermore, injuries to the central nervous system
-account for a substantial proportion of trauma-related deaths, as demonstrated in analyses from large registries such
-as the Arkansas Trauma Registry (16). Yet, while previous research has described OFI in trauma resuscitation and in
-general ICU trauma cohorts, relatively little is known about the prevalence, nature, and determinants of OFI
-specifically among patients with TBI. <!-- Add a part after ACS TQIP using WHO as a reference to TQIP-->
+identifies opportunities for improvement (OFI) and ultimately reduces trauma-related mortality (10,11). The WHO, however, insist that the trauma quality improvement programmes must be a continuous, multidisciplinary process. This
+entails audit filters, structured morbidity and mortality and preventable death case reviews in order to find
+opportunities for improvement (OFI). They also discuss that the formulation of corrective strategies or action plans
+in response to identified OFI:s is essential to trauma quality improvement programmes. Furthermore, the WHO
+emphasises that TQIP must ensure that corrective measures addressing identified OFI result in tangible and verifiable
+improvements in outcomes, thereby confirming that deficiencies are not only recognised but also effectively resolved. (Källa WHO) <!-- add WHO source -->
+
+
+Previous studies and reviews have discussed preventable trauma deaths where recurring patterns occur, namely, delays in imaging and care, missed injuries, deviations in care regarding airway-related care, haemorrhage control, and fluid management (12–16). Importantly, some of these findings were observed in high-performing level I trauma centres, underscoring that even mature systems remain vulnerable to error. Furthermore, injuries to the central nervous system account for a substantial proportion of trauma-related deaths, as demonstrated in analyses from large registries such as the Arkansas Trauma Registry (16). Yet, while previous research has described OFI in trauma resuscitation and in general ICU trauma cohorts, relatively little is known about the prevalence, nature, and determinants of OFI specifically among patients with TBI. <!-- Add a part after ACS TQIP using WHO as a reference to TQIP-->
 
 Previous papers at Karolinska University Hospital have contributed to this field by describing OFIs across different
 aspects of trauma care. In 2023, Hussein A. et al. analysed patient- and process-related factors during trauma
@@ -96,6 +98,10 @@ experienced at least one OFI (1). Most recently, Szolnoky K et al. assessed OFI 
 demonstrated that, although overall incidence declined over time, patients with TBI remained likely to have
 preventable shortcomings in care (18). <!-- Rewrite into a more general rationale paragraph-->
 
+Aim
+=====
+As such, this study aims to identify and describe opportunities for improvement in the care of adult trauma patients
+with TBI, and to examine patient- and process-related factors associated with their occurrence.
 
 Methods
 =======
@@ -184,23 +190,23 @@ include…
 And those who were categorised were....
 
 Furthermore, the categorical variables include…
-<!-- Choose variables, not sure which too chose--> 
+<!-- Choose variables, not sure which ones to chose--> 
 
 
 Statistical methods
 ----------------
 
 For continuous variables, medians and interquartile ranges (25th-75th  percentiles) are used. Categorical variables
-are presented using the number of patients and their corresponding percentages of the cohort. <!-- If multivariable regression and anlysis will be used, how will we handle missing data? -->
+are presented using the number of patients and their corresponding percentages of the cohort. <!-- If multivariable regression analysis will be used, how will we handle missing data from other variables in the same patient? -->
 
-Logistic regression was used to examine the association between patient and process-related factors and OFI. Results
-are reported as Odds Ratio (OR) with 95% confidence interval (CI), and a p-value of <0.05 was used as the threshold
-for statistical significance. To ensure objectivity, all statistical analyses were initially performed on synthetic
-data before being applied to the combined trauma registry and trauma care quality database. Statistical analyses were
-conducted in R version x. 
-
-
-<!-- unsure how the statistical model will work, previous papers mention multivariable logistic regression and one Uni/bivariable regression. How does this work? --> 
+Logistic regression was used to examine the association between patient and process-related factors and OFI.
+Bivariable logistic regression to assess unadjusted associations between patient and process factors and OFI was
+initially performed. Variables of clinical relevance and those significant in bivariable analyses were then entered
+into a multivariable logistic regression model to estimate adjusted associations. Results are reported as Odds Ratio
+(OR) with 95% confidence interval (CI), and a p-value of <0.05 was used as the threshold for statistical
+significance. To ensure objectivity, all statistical analyses were initially performed on synthetic data before being
+applied to the combined trauma registry and trauma care quality database. Statistical analyses were conducted in R
+version x. <!-- I assume we will do both bivariable and multivariable regression? --> 
 
 
 
