@@ -1,7 +1,7 @@
 ## Welcome!
 
 ## This is your project's main script file and together with
-## manuscript.Rmd it provides and entry point for you and other people
+## manuscript.qmd it provides and entry point for you and other people
 ## coming to the project. The code in this file should give an outline
 ## of the different steps conducted in your study, from importing data
 ## to producing results.
@@ -20,7 +20,17 @@
 ## clean R session.
 noacsr::source_all_functions()
 
-## Import data
+# Load packages
+library(rofi) # installed using remotes::install_github("martingerdin/rofi")
+
+# Import data
 data <- import_data(test = TRUE)
 
-## Whatever you do next, maybe clean data?
+# Merge data
+merged.data <- merge_data(data, test = TRUE)
+
+# Add opportunities for improvement outcome
+merged.data$ofi <- create_ofi(merged.data)
+
+# 
+

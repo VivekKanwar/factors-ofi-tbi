@@ -4,3 +4,5 @@ PROJECT.org*
 .Rhistory
 **/*.Rds
 results/
+.Rproj.user
+manuscript.html
