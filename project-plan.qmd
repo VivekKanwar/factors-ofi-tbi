@@ -87,16 +87,25 @@ in response to identified OFI:s is essential to trauma quality improvement progr
 emphasises that TQIP must ensure that corrective measures addressing identified OFI result in tangible and verifiable
 improvements in outcomes, thereby confirming that deficiencies are not only recognised but also effectively resolved. (Källa WHO) <!-- add WHO source -->
 
+Previous studies and reviews have discussed preventable trauma deaths where recurring patterns occur, namely, delays in imaging and care, missed injuries, deviations in care regarding airway-related care, haemorrhage control, and fluid management (12–16). Importantly, some of these findings were observed in high-performing level I trauma centres, underscoring that even mature systems remain vulnerable to error. Furthermore, injuries to the central nervous system account for a substantial proportion of trauma-related deaths, as demonstrated in analyses from large registries such as the Arkansas Trauma Registry (16). Yet, while previous research has described OFI in trauma resuscitation and in general ICU trauma cohorts, relatively little is known about the prevalence, nature, and determinants of OFI specifically among patients with TBI. 
 
-Previous studies and reviews have discussed preventable trauma deaths where recurring patterns occur, namely, delays in imaging and care, missed injuries, deviations in care regarding airway-related care, haemorrhage control, and fluid management (12–16). Importantly, some of these findings were observed in high-performing level I trauma centres, underscoring that even mature systems remain vulnerable to error. Furthermore, injuries to the central nervous system account for a substantial proportion of trauma-related deaths, as demonstrated in analyses from large registries such as the Arkansas Trauma Registry (16). Yet, while previous research has described OFI in trauma resuscitation and in general ICU trauma cohorts, relatively little is known about the prevalence, nature, and determinants of OFI specifically among patients with TBI. <!-- Add a part after ACS TQIP using WHO as a reference to TQIP-->
+TBI remains a challenge within modern trauma systems, not only due to its contribution to mortality but also due to
+the magnifying impact on the outcome because of small process deviations. Delays in imaging, inconsistent airway
+management, and lapses in haemodynamic measures are all examples that can result in irreversible damage. Although
+TQIP have been developed to identify and correct such lapses, with the WHO stressing the importance of linking OFIs
+to corrective actions and verification of bettered outcomes, most research has been done on mixed trauma cohorts.
+This, on the other hand, leaves TBI-specific vulnerabilities undercharacterised. Recent work by Szolnoky et al.
+suggests that, despite overall declines in OFI, patients with TBI remain at risk of preventable shortcomings,
+underscoring the need for TBI-specific quality improvement efforts (23).
 
-Previous papers at Karolinska University Hospital have contributed to this field by describing OFIs across different
+
+<!--Previous papers at Karolinska University Hospital have contributed to this field by describing OFIs across different
 aspects of trauma care. In 2023, Hussein A. et al. analysed patient- and process-related factors during trauma
 resuscitation and concluded that variables such as time to first CT and injury severity were strongly associated with
 OFI (17). Cao ES. et al. continued the focus on ICU cohorts, presenting that 9.9% ICU-admitted adult trauma patients
 experienced at least one OFI (1). Most recently, Szolnoky K et al. assessed OFI patterns in trauma cohorts and
 demonstrated that, although overall incidence declined over time, patients with TBI remained likely to have
-preventable shortcomings in care (18). <!-- Rewrite into a more general rationale paragraph-->
+preventable shortcomings in care (18).-->
 
 Aim
 =====
@@ -197,7 +206,7 @@ Statistical methods
 ----------------
 
 For continuous variables, medians and interquartile ranges (25th-75th  percentiles) are used. Categorical variables
-are presented using the number of patients and their corresponding percentages of the cohort. <!-- If multivariable regression analysis will be used, how will we handle missing data from other variables in the same patient? -->
+are presented using the number of patients and their corresponding percentages of the cohort. <!-- If multivariable regression analysis will be used, how will we handle missing data from other variables for the same patient? -->
 
 Logistic regression was used to examine the association between patient and process-related factors and OFI.
 Bivariable logistic regression to assess unadjusted associations between patient and process factors and OFI was
@@ -207,9 +216,6 @@ into a multivariable logistic regression model to estimate adjusted associations
 significance. To ensure objectivity, all statistical analyses were initially performed on synthetic data before being
 applied to the combined trauma registry and trauma care quality database. Statistical analyses were conducted in R
 version x. <!-- I assume we will do both bivariable and multivariable regression? --> 
-
-
-
 
 
 
