@@ -5,6 +5,10 @@ bibliography: bibliography.bib
 csl: vancouver.csl
 format: html
 ---
+<!-- CP: The report is interesting, very promising and also well written. 
+Effort is needed to further improve the report by structuring it in relation to the aims. Aims also to be improved according to the course i.e. challenging a scientific question (possibly having a hypothesis) in a yes/no manner: see comments
+I might have missed some points in the report not being a clinician working on this matter but I think that you can improve the structure of the Aims and M&M a bit more. -->
+
 Introduction
 ============
 Injury has reached epidemic proportions worldwide, disproportionately affecting the most productive and the youngest
