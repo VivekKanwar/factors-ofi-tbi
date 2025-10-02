@@ -5,28 +5,11 @@ bibliography: bibliography.bib
 csl: vancouver.csl
 format: html
 ---
-
-<!-- The project plan should be 3-4 pages long and written in
-Rmarkdown (like this document). Remove all comments in italic when you 
-use this document as a template for your own project plan. -->
-
-<!-- This is an R Markdown document. Markdown is a simple formatting
-syntax for authoring HTML, PDF, and MS Word documents. For more
-details on using R Markdown see http://rmarkdown.rstudio.com -->
-
-<!-- This is a comment and will not be present in the compiled
-document. Try "knitting" this document by clicking the knit button up
-to the left, or by running `rmarkdown::render("project-plan.Rmd")` in
-the console and you should only see headings -->
-
-
-<!--NEED TO ADD SOURCES IN TEXT-->
-
 Introduction
 ============
 Injury has reached epidemic proportions worldwide, disproportionately affecting the most productive and the youngest
 members of society. Trauma, often synonymously used with serious injury, is defined as a physical injury and the
-body's associated response [@Szolnoky2025]. Furthermore, trauma remains a leading cause of death and disability
+body's associated response [@Cao]. Furthermore, trauma remains a leading cause of death and disability
 worldwide, where it is the foremost cause of death among people under the age of 45 and ranks as the fourth leading
 cause of death across all ages [@Maerz2009].
 
@@ -34,9 +17,12 @@ Pathophysiology
 ------------
 
 Among trauma-related conditions, traumatic brain injury (TBI) is a major cause of death and disability worldwide and
-constitutes a significant public health burden (3). TBI is the result of an external force causing neurological
-impairments that may be either transient or permanent (4). Furthermore, TBI should not be regarded as a single event
-but rather as a dynamic process. The initial trauma often triggers a secondary pathophysiological cascade, including ischemia, oedema, and metabolic disturbances, that develop over time and critically influence long-term outcomes (5). As such, patients with TBI often require admission to the intensive care unit (ICU). 
+constitutes a significant public health burden [@Guan2023]. TBI is the result of an external force causing
+neurological impairments that may be either transient or permanent [@Capizzi2020]. Furthermore, TBI should not be
+regarded as a single event but rather as a dynamic process. The initial trauma often triggers a secondary
+pathophysiological cascade, including ischemia, oedema, and metabolic disturbances, that develop over time and
+critically influence long-term outcomes [@Robba2025]. As such, patients with TBI often require admission to the
+intensive care unit (ICU). 
 
 Management of TBI 
 ------------
@@ -47,58 +33,70 @@ Initial management of TBI spans prehospital and early in-hospital phases and cen
 stabilisation and diagnostics in order for secondary injuries to be limited. Protection of the airway in patients
 with impaired consciousness, adequate oxygenation and normocapnia, and fast correction of hypotension are all
 prioritised in the initial phase of management as hypoxia and low blood pressures are associated with an increased
-mortality (6–9). Non-contrast head CT should be performed without delay to identify surgically remediable lesions.
-Depending on mechanism and physiology, whole-body CT may be used selectively, as randomised data show no mortality
-advantage over targeted imaging, while observational work underscores the benefit of immediate CT pathways for
-severely injured patients (10,11). Haemostatic strategies in the early stages, such as administering tranexamic acid
-within three hours of injury, can reduce mortality (12). After this initial phase, depending on the patient's condition, management transitions to other areas of the hospital, where sustained prevention of secondary systemic
-and intracranial insults becomes the primary focus. 
+mortality  [@Carney2017; @Stocchetti2017; @Chesnut1993; @Spaite2017]. Non-contrast head CT should be performed
+without delay to identify surgically remediable lesions. Depending on mechanism and physiology, whole-body CT may be
+used selectively, as randomised data show no mortality advantage over targeted imaging, while observational work
+underscores the benefit of immediate CT pathways for severely injured patients [@Sierink2016; @Yamamoto2023].
+Haemostatic strategies in the early stages, such as administering tranexamic acid within three hours of injury, can
+reduce mortality [@Crash-32019]. After this initial phase, depending on the patient's condition, management
+transitions to other areas of the hospital, where prevention of secondary systemic and intracranial insults becomes
+the primary focus. 
 
 The management of TBI in the ICU is particularly challenging. Given the heterogeneity and dynamic nature of the
 condition, care must prioritise the prevention and limitation of secondary systemic threats such as hypoxia,
 hypercapnia, arterial hypotension, hyponatraemia and pyrexia. Equal attention must also be directed toward secondary
-intracranial threats, including expanding haematomas, cerebral contusions and rises in intracranial pressure. (5–7)
-Although these complexities are often anticipated, they render ICU care especially vulnerable to deviations from
-optimal practice, thereby posing risks to both patient safety and overall quality of care.   
+intracranial threats, including expanding haematomas, cerebral contusions and rises in intracranial pressure
+[@Robba2025; @Stocchetti2017; @Slot2025]. Although these complexities are often anticipated, they render ICU care
+especially vulnerable to deviations from optimal practice, thereby posing risks to both patient safety and overall
+quality of care.   
 
 The intensive care of patients with TBI has been addressed in both guidelines and reviews. Multiple recent reviews
 and guideline updates consistently refer to the Brain Trauma Foundation (BTF) Fourth Edition, which remains a central
-reference for modern management (5–9). According to the BTF, treatment should be initiated when intracranial pressure (ICP) exceeds 22 mmHg. Cerebral perfusion pressure (CPP) should be maintained between 60–70 mmHg. Prophylactic
-hyperventilation should be avoided within the first 24 hours, and corticosteroid usage should be refrained from.
-
-<!-- MGW: Try to find a balance when it comes to the level of detail that you use. The specific ICD and CPP targets feel a bit too specific. -->
+reference for modern management [@Robba2025; @Stocchetti2017; @Slot2025; @Wiles2022; @Dash2018]. The BTF advises
+treatment strategies to lower ICP and how to maintain cerebral perfusion pressure (CPP) within optimal ranges. It
+also discusses what practices to avoid, such as prophylactic hyperventilation within the first 24 hours and
+corticosteroid usage. 
 
 Trauma Quality Improvement
 ------------
 
 Despite the presence of systems and guidelines in place for these patients, trauma care remains vulnerable to errors,
-deviations from established practice, and treatment delays, all of which may negatively influence outcomes. In
-response, the American College of Surgeons developed the Trauma Quality Improvement Program (TQIP), a risk-adjusted
-benchmarking system designed to assess the quality of trauma care <!-- MGW: I would mention ACS TQIP as one example of a TQIP and refer to the WHO guidelines as more general. I suggest that you start by introducing the concept of TQIP by referring to the WHO guidelines and then mention ACS TQIP as one example -->. Through audit filters and peer review, it
-identifies opportunities for improvement (OFI) and ultimately reduces trauma-related mortality (10,11). The WHO, however, insist that the trauma quality improvement programmes must be a continuous, multidisciplinary process. This
-entails audit filters, structured morbidity and mortality and preventable death case reviews in order to find
-opportunities for improvement (OFI). They also discuss that the formulation of corrective strategies or action plans
-in response to identified OFI:s is essential to trauma quality improvement programmes. Furthermore, the WHO
-emphasises that TQIP must ensure that corrective measures addressing identified OFI result in tangible and verifiable
-improvements in outcomes, thereby confirming that deficiencies are not only recognised but also effectively resolved. (Källa WHO) <!-- add WHO source -->
+deviations from established practice, and treatment delays, all of which may negatively influence outcomes <!-- CP: Reference-->. In response, the American College of Surgeons developed the Trauma Quality Improvement Program (TQIP),
+a risk-adjusted benchmarking system designed to assess the quality of trauma care <!-- MGW: I would mention ACS TQIP
+as one example of a TQIP and refer to the WHO guidelines as more general. I suggest that you start by introducing the
+concept of TQIP by referring to the WHO guidelines and then mention ACS TQIP as one example -->. Through audit filters and peer review, it identifies opportunities for improvement (OFI) and ultimately reduces trauma-related mortality [@Al-thani2023; @Shafi2009]. The WHO, however, insist that the trauma quality improvement programmes must be a continuous, multidisciplinary process. This entails audit filters, structured morbidity and mortality and preventable death case reviews in order to find opportunities for improvement (OFI). They also discuss that the formulation of corrective strategies or action plans in response to identified OFI:s is essential to trauma quality improvement programmes. Furthermore, the WHO emphasises that TQIP must ensure that corrective measures addressing identified OFI result in tangible and verifiable improvements in outcomes, thereby confirming that deficiencies are not only recognised but also effectively resolved [@world_health_organization_guidelines_2009].
 
-Previous studies and reviews have discussed preventable trauma deaths where recurring patterns occur, namely, delays in imaging and care, missed injuries, deviations in care regarding airway-related care, haemorrhage control, and fluid management (12–16). Importantly, some of these findings were observed in high-performing level I trauma centres, underscoring that even mature systems remain vulnerable to error. Furthermore, injuries to the central nervous system account for a substantial proportion of trauma-related deaths, as demonstrated in analyses from large registries such as the Arkansas Trauma Registry (16). Yet, while previous research has described OFI in trauma resuscitation and in general ICU trauma cohorts, relatively little is known about the prevalence, nature, and determinants of OFI specifically among patients with TBI. 
+Previous studies and reviews have discussed preventable trauma deaths where recurring patterns occur, namely, delays
+in imaging and care, missed injuries, deviations in care regarding airway-related care, haemorrhage control, and
+fluid management [@Sanddal2011; @Gruen2006; @Alao2024; @Teixeira2007; @Mabry2024]. Importantly, some of these
+findings were observed in high-performing level I trauma centres, underscoring that even mature systems remain
+vulnerable to error. Furthermore, injuries to the central nervous system, like TBI, account for a substantial
+proportion of trauma-related deaths, as demonstrated in analyses from large registries such as the Arkansas Trauma
+Registry [@Mabry2024]. Yet, while previous research has described OFI in trauma resuscitation and in general ICU
+trauma cohorts, relatively little is known about the prevalence, nature, and determinants of OFI specifically among
+patients with TBI.
 
-<!-- MGW: I think this paragraph is good, but I suggest adding a subheading like "Rationale for this study" or something like that. -->
+Rationale
+------------
 
 TBI remains a challenge within modern trauma systems, not only due to its contribution to mortality but also due to
 the magnifying impact on the outcome because of small process deviations. Delays in imaging, inconsistent airway
 management, and lapses in haemodynamic measures are all examples that can result in irreversible damage. Although
 TQIP have been developed to identify and correct such lapses, with the WHO stressing the importance of linking OFIs
 to corrective actions and verification of bettered outcomes, most research has been done on mixed trauma cohorts.
-This, on the other hand, leaves TBI-specific vulnerabilities undercharacterised. Recent work by Szolnoky et al.
+This, on the other hand, leaves TBI-specific vulnerabilities undercharacterised. Recent work by *Szolnoky et al.*
 suggests that, despite overall declines in OFI, patients with TBI remain at risk of preventable shortcomings,
-underscoring the need for TBI-specific quality improvement efforts (23).
+underscoring the need for TBI-specific quality improvement efforts [@Szolnoky2025]. <!--CP: Therefore we hypothesis ze that is possible to identify new OFis related to TBI?? 
+CP: See if something like that can be a hypothesis -->
 
 Aim
 =====
-This study aims to identify and describe opportunities for improvement in the care of adult trauma patients
-with TBI, and to examine patient- and process-related factors associated with their occurrence.
+This study aims to identify and describe OFI in the care of adult trauma patients with TBI, and to examine patient- and process-related factors associated with their occurrence. <!-- CP: You need to phrase these aims in a more concrete way: this what this course demands..see also next comment E.g. (but for your supervisor to help with) Identify specific OFI by doing what? I mean , an identification require that certain parameters will be used and confirmed
+If too long M&M will describe these parameters)” -->
+
+<!-- CP: Pls describe this aim in a Yes/No question e..g determine whether the identified OFI are associated with patient and process related factors. Ask for your supervisor to help revising -->
+
+<!--CP: Can you explain more concretely What this means? Occurrence of OPI?-->
 
 Methods
 =======
@@ -107,43 +105,42 @@ Study Design
 -----------
 A single-centre, registry-based retrospective cohort study was conducted at Karolinska University Hospital in Solna
 (NKS). The trauma registry for NKS is a comprehensive trauma registry that is part of the Swedish National Trauma
-Registry, SweTrau, and is compliant with the Utstein template for uniform reporting after trauma (Källa  Utstein
-Template). As such, the registry prospectively records patient demographics, prehospital and emergency department
-physiology, times of key interventions such as imaging, surgery and transfer, injury severity scores, and in-hospital outcome. 
+Registry, SweTrau, and is compliant with the Utstein template for uniform reporting after trauma [@Ringdal2008]. As
+such, the registry records patient demographics, prehospital and emergency department physiology, times of key
+interventions such as imaging, injury severity scores, and in-hospital outcomes. 
 
-SweTrau includes patients of all ages who have sustained serious injuries from traumatic events
-such as falls, traffic incidents, or other external violence. Since 2024<!-- MGW: Has this changed over the years? Otherwise I suggest that you remove the year. -->, patients are included if a trauma
-team activation has occurred, regardless of injury severity, or if they have a New Injury Severity Score (NISS)
-greater than fifteen without trauma team activation. Patients transferred to a hospital within seven days of the
-traumatic event with a NISS greater than fifteen are also included. Exclusion criteria are cases where the only
-traumatic condition is chronic subdural haematoma, trauma alarms without an underlying traumatic event, patients with
-protected identity, and patients declared dead on arrival. Since these inclusion and exclusion criteria have changed
-over time, patients in this study will be filtered to ensure they fulfil the criteria relevant to the study period
-(Källa SweTrau årsbok 2024). <!--Use the 2023 version instead? Data used is up to 2023 --> 
+The Swedish Trauma Registry includes patients of all ages who have sustained serious injuries from traumatic events
+such as falls, traffic incidents, or other external violence. Patients have been included if a trauma team activation
+has occurred, regardless of injury severity, or if they have a New Injury Severity Score (NISS) greater than fifteen
+without trauma team activation. Patients transferred to a hospital within seven days of the traumatic event with a
+NISS greater than fifteen are also included. Exclusion criteria are cases where the only traumatic condition is
+chronic subdural haematoma, trauma alarms without an underlying traumatic event, patients with protected identity,
+and patients declared dead on arrival. Since these inclusion and exclusion criteria have changed over time, patients
+in this study will be filtered to ensure they fulfil the criteria relevant to the study period [@Holmberg_2023].  
 
 To identify opportunities for improvement, the trauma registry was linked to the hospital’s local trauma care quality
 database. Linkage was performed using the Swedish personal identity number, after which trauma registry variables and
 quality review outcomes were extracted for analysis of patient and process factors associated with opportunities for
-improvement.
+improvement. 
 
 Setting
 ---------
-Karolinska University Hospital in Solna houses Trauma Centre Karolinska (TCK), Sweden’s largest provider of advanced
-trauma care for both adults and children<!-- MGW: Do you have a source for this? -->. The trauma center has around-the-clock availability of key services, including neurosurgery, general
-surgery, orthopaedic surgery, anaesthesia and intensive care, as well as diagnostic and interventional radiology and
-consultants from other relevant specialities. (Källa   från American College of surgeons, plus källa  som säger NKS
-har alla dessa saker). Also, the ICU units in Karolinska Universitets sjukhuset are all recognised as Level 3 units
-according to the **Swedish Society of Anaesthesiology and Intensive Care Medicine**. (källa)
+Karolinska University Hospital in Solna houses Trauma Centre Karolinska, Sweden’s largest provider of advanced trauma
+care for both adults and children. According to the definition of the American College of Surgeons, NKS serves as the
+designated Level 1 trauma centre for the greater metropolitan area of Stockholm. This designation requires
+around-the-clock availability of key services, including neurosurgery, general surgery, orthopaedic surgery,
+anaesthesia and intensive care, as well as diagnostic and interventional radiology and consultants from other
+relevant specialities [@American_college_of_surgeons_resources_2022; @Granstrom2018]. Additionally, the ICU units in
+NKS are all recognised as Level 3 units according to the Swedish Society of Anaesthesiology and Intensive Care
+Medicine [@Swedish_society_of_anaesthesiology_and_intensive_care_medicine_riktlinjer_2024].  
 
-<!-- The numbers below belong to the results section, so they should be moved there. -->
-
-Furthermore, the trauma registry includes about 14000 patients admitted between 2012 and 2023. The trauma care
-quality database is a subset of this registry, encompassing approximately 8,000 patients selected for review between
-2014 and 2023. Screening for potential opportunities for improvement was implemented in 2013 for selected patient
-cases. Initially, case selection was based on a limited number of audit filters and the judgment of a small group of
-clinicians directly involved in trauma care. Since 2017, a standardised set of audit filters has been consistently
-applied, and all trauma patients admitted to the hospital are screened for potential opportunities for improvement.
-The process has expanded to include a broader group of senior clinicians and nursing staff, ensuring a systematic and
+Furthermore, the trauma registry covers trauma patients admitted between 2012 and 2023. The trauma care quality
+database is a subset of this registry and contains patients who have been selected for review between 2014 and 2023.
+Screening for potential opportunities for improvement was implemented in 2013 for selected patient cases. Initially,
+case selection was based on a limited number of audit filters and the judgment of a small group of clinicians
+directly involved in trauma care. Since 2017, a standardised set of audit filters has been consistently applied, and
+all trauma patients admitted to the hospital are screened for potential opportunities for improvement. The process
+has expanded to include a broader group of senior clinicians and nursing staff, ensuring a systematic and
 comprehensive review. Patients flagged through the audit filters, and therefore have potential OFI, undergo
 discussion in structured multidisciplinary morbidity and mortality conferences, where representatives from relevant
 specialties and professions involved in trauma care are involved.  The discussion focuses on establishing whether
@@ -155,24 +152,23 @@ findings and cases without deviations.
 
 Participants
 ------------
-All adult patients with TBI recorded in the Karolinska trauma registry between 2012 and 2023 who also had been
-screened for opportunity for improvements were included in this study. Furthermore, TBI was defined as a GCS score of
-≤8 combined with an Abbreviated Injury Scale ≥3 for the head region. Patients were eligible irrespective of level of
-care.
+Included in the study were all adult patients with TBI recorded in the Karolinska trauma registry between 2012 and
+2023 who also had been screened for opportunity for improvements. Furthermore, TBI was defined as a Glasgow Coma
+Scale (GCS) score of ≤8 combined with an Abbreviated Injury Scale (AIS) ≥3 for the head region. Patients were
+eligible irrespective of level of care and were not restricted to intensive care admissions.
 
-Patients younger than 18 years were excluded, as their trauma follows separate clinical care systems and quality <!-- is this true? could not find source-->
-review processes that differ from those for adults . Also excluded were patients declared dead on arrival, since
-assessment of opportunities for improvement in these cases is not relevant to the aim of this study. 
-
+Patients younger than 18 years were excluded, as their trauma follows separate clinical care systems and quality
+review processes that differ from those for adults. Also excluded were patients declared dead on arrival, since
+assessment of opportunities for improvement in these cases is not relevant to the aim of this study.
 
 Variables
 ---------
 
 ### Outcome
 
-The primary outcome of this study was the presence of one or more opportunities for improvement during the management
-of patients with TBI. As mentioned, OFIs were determined after a screening process with audit filters and a
-subsequent review in multidisciplinary morbidity-and-mortality conferences. Following the peer review, the result of
+The primary outcome of this study was the presence of one or more OFIs during the management <!-- CP: You probably have all needed info in this text. However, Pls describe this section in relation to Aim 1 and 2. The text here needs to be stringently matched with the two aims-->
+of patients with TBI. As mentioned, OFIs were adjudicated after a screening process with audit filters and a
+subsequent review in multidisciplinary morbidity and mortality conferences. Following the peer review, the result of
 each case discussion was recorded in the trauma care quality register and was presented as a binary variable, “Yes -
 At least one OFI identified” and “No - No OFI identified”. 
 
@@ -182,67 +178,88 @@ The variables chosen to be analysed for this study were those from the trauma re
 audit filters, standard epidemiological factors and the factors registered in the Swedish National Trauma Registry.
 These could be divided into categorical and continuous variables. 
 
-Certain continuous variables were retained in their continuous form for analysis, but others were categorised into
-clinically meaningful groups to facilitate descriptive statistics and subgroup analyses.  The continuous variables
-include…  
-And those who were categorised were....
+The categorical variables include sex, on-call times defined as hours outside of 08:00 - 17:00, or Saturday and
+Sunday, hospital care level ordered from the emergency department to the highest being the ICU, intubation status,
+mechanism of injury, ASA class, duration of mechanical ventilation and ICU length stay. The latter two are
+categorised into different groups that represent a certain number of days. 
 
-Furthermore, the categorical variables include…
-<!-- Choose variables, not sure which ones to chose--> 
-<!-- MGW: Start with the ones in Husseins and Elins papers-->
+The continuous variables include age, Injury Severity Score (ISS), Revised Trauma Score (RTS), systolic blood
+pressure (SBP), respiratory rate (RR) and time to first CT in minutes. The Revised Trauma Score was calculated using
+GCS, systolic blood pressure, and respiratory rate, each coded on a scale from 0 to 4 and combined with published
+coefficients [@Champion1989]. Furthermore, certain continuous variables were retained in their continuous form for
+analysis, but others were categorised into clinically meaningful groups to facilitate descriptive statistics and
+subgroup analyses. 
 
-
-Statistical methods
+Statistical methods. <!-- CP: Pls recall aim 1 and aim 2 and develop the below text in relation to these 2 aims: see criteria-->
 ----------------
 
 For continuous variables, medians and interquartile ranges (25th-75th  percentiles) are used. Categorical variables
-are presented using the number of patients and their corresponding percentages of the cohort. <!-- If multivariable regression analysis will be used, how will we handle missing data from other variables for the same patient? -->
-
-<!-- MGW: Regardless of the analysis method, we need to handle missing data somehow. You can use complete case analysis, which means that you only include cases with complete data for all variables of interest. -->
+are presented using the number of patients and their corresponding percentages of the cohort. Complete case analysis
+will be used; as such, only cases with complete data for all variables of interest will be used. 
 
 Logistic regression was used to examine the association between patient and process-related factors and OFI.
 Bivariable logistic regression to assess unadjusted associations between patient and process factors and OFI was
-initially performed. Variables of clinical relevance and those significant in bivariable analyses were then entered
-into a multivariable logistic regression model to estimate adjusted associations. <!-- MGW: I think you should decide which ones to include in the multivariable model from the start, regardless of their significance in the bivariable analysis --> Results are reported as Odds Ratio
-(OR) with 95% confidence interval (CI), and a p-value of <0.05 was used as the threshold for statistical
-significance. To ensure objectivity, all statistical analyses were initially performed on synthetic data before being
-applied to the combined trauma registry and trauma care quality database. Statistical analyses were conducted in R
-version x. 
+initially performed. To estimate adjusted associations, these variables were entered into a multivariable logistic
+regression model. Results are reported as Odds Ratio (OR) with 95% confidence interval (CI), and a p-value of <0.05
+was used as the threshold for statistical significance. To ensure objectivity, all statistical analyses were
+initially performed on synthetic data before being applied to the combined trauma registry and trauma care quality
+database. Statistical analyses were conducted in R. 
 
+Ethical considerations
+=======
 
+This is a register-based study with no intervention and thus entailed no risk of burden nor physical harm or contact
+with patients. Rather, it involves secondary use of routinely collected clinical data. The principal ethical risk was
+the risk of privacy and integrity intrusion, especially during the linkage of the trauma registry and the local
+trauma care quality database before pseudonymization. Also, all results are reported on an aggregate level to
+minimise the possibility of reidentification. In line with regular practice for registry studies based on already
+collected data, informed consent was not obtained from participants. The risk of privacy intrusion was judged to
+increase if individual research subjects were to be contacted.
 
-
-
-
-
-
-
-
-
-
-
-<!-- *Refer to the appropriate reporting guideline for details. If you are
-developing, updating or validating a clinical prediction model then
-use
-[TRIPOD](https://www.equator-network.org/reporting-guidelines/tripod-statement/). If
-you are conducting an observational study, for example a cohort or
-case control study in which you assess associations between some
-exposure and an outcome then use
-[STROBE](https://www.equator-network.org/reporting-guidelines/strobe/).* -->
+The risk of integrity breach was weighed against the potential benefits the project can provide regarding health and
+was judged favourable. Although there is no direct benefit for the individuals whose data was used, the societal
+value is substantial because identifying opportunities for improvement in traumatic brain injury care can inform
+corrective actions, enhance patient safety, and reduce morbidity and mortality. The Swedish Ethical Review Authority
+granted ethical approval with the DNRs being: 2021-02541, 2021-03531 and 2023-02975-02. 	
 
 Project Update and Timeline
 ===========================
 
-*This is part B) in the project plan [sv: projektredogörelse]. *
+Data collection has already been done using two established registers at Karolinska University Hospital, Solna. These
+are the trauma registry (SweTrau) with approximately 14,000 patients between 2012–2023, and the trauma care quality
+database, which contains around 8,000 patients between 2014–2023. The latter includes the nominable variable of Yes
+or No OFI identified during multidisciplinary morbidity and mortality conferences. 
 
-*Save the image generated from the Gantt chard spreadsheet into the assets folder, rename it to project-gantt.png*
+Variables: Patient and process factors are analysed
 
-![**The Gantt chart will be displayed here when you place it in the assets folder under "project-gantt.png"**](assets/project-gantt.png)
+-	Categorical: sex, arrival outside office hours, hospital care level, intubation status, mechanism of injury, ASA
+class, ventilation duration, and ICU length of stay.
 
+-	Continuous: age, Injury Severity Score, Revised Trauma Score, systolic blood pressure, respiratory rate, and time to CT. Some continuous variables will be categorised. 
+
+Analysis: 
+
+-	Results will be presented in tables and figures with for eg. Means, interquartile ranges, counts and percentages. 
+
+-	Associations between factors and OFI will be examined using bivariable and multivariable logistic regression
+
+This will be presented as OR with 95% CI. Analyses will be complete-case and conducted in R. 
+
+
+![**Gantt timeline for the project**](assets/project-gantt.png)
 Back-up Plan
 ============
 
-*This is part C) in the project plan [sv: projektredogörelse]*
+If unforeseen issues arise during the project, and as data has already been collected, the project will be adjusted by doing the following:
+
+- **Reduce the dataset scope**  
+  Instead of analysing all patients with TBI in the register between 2012–2023, the reserve plan would focus on a shorter time period and therefore reduce the number of patients analysed.  
+
+- **Reduce the variable set**  
+  If analysis of the full range of patient- and process-level factors proves too difficult to do within the timeframe, the analysis will prioritise some variables over others and reduce the number of variables.  
+
+- **Alternative analysis**  
+  If multivariable regression is not possible or proves too difficult, the reserve plan is to perform simpler analysis, such as simple/bivariable analysis, therefore only presenting unadjusted associations.  
 
 References
 ==========
