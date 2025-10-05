@@ -32,5 +32,8 @@ merged.data <- merge_data(data, test = TRUE)
 # Add opportunities for improvement outcome
 merged.data$ofi <- create_ofi(merged.data)
 
-# 
+#Making OFI a factor and not characters 
+merged.data <- merged.data %>%
+  dplyr::mutate(ofi = factor(ofi, levels = c("Yes","No"))) 
+
 
