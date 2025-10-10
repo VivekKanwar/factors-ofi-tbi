@@ -1,4 +1,4 @@
-library(dplyr)
+library(dplyr) #Probs run this function in the main R 
 
 Remove_missing_ofi <- function(x)  {
   dplyr::filter(x, !is.na(ofi)) #Filtering patients so that only those with an outcome are left 

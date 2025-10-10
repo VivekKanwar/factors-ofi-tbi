@@ -36,4 +36,9 @@ merged.data$ofi <- create_ofi(merged.data)
 merged.data <- merged.data %>%
   dplyr::mutate(ofi = factor(ofi, levels = c("Yes","No"))) 
 
+#Filter data to variables that should be observed, remove patients with missing data 
+#Make first descriptive table 
+
+
+
 

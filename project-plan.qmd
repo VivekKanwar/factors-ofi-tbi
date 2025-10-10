@@ -1,5 +1,5 @@
 ---
-title: "project-plan"
+title: "Project-plan"
 date: today 
 bibliography: bibliography.bib
 csl: vancouver.csl
@@ -19,7 +19,6 @@ cause of death across all ages [@Maerz2009].
 
 Pathophysiology 
 ------------
-
 Among trauma-related conditions, traumatic brain injury (TBI) is a major cause of death and disability worldwide and
 constitutes a significant public health burden [@Guan2023]. TBI is the result of an external force causing
 neurological impairments that may be either transient or permanent [@Capizzi2020]. Furthermore, TBI should not be
@@ -30,8 +29,8 @@ intensive care unit (ICU).
 
 Management of TBI 
 ------------
-
-<!-- MGW: Consider discussing the management of trauma first and then the management of TBI, as many of the things you write below also apply to non-TBI trauma patients -->
+<!-- MGW: Consider discussing the management of trauma first and then the management of TBI, as many of the things you
+write below also apply to non-TBI trauma patients -->
 
 Initial management of TBI spans prehospital and early in-hospital phases and centres on rapid physiological
 stabilisation and diagnostics in order for secondary injuries to be limited. Protection of the airway in patients
@@ -196,6 +195,7 @@ subgroup analyses.
 
 Statistical methods. <!-- CP: Pls recall aim 1 and aim 2 and develop the below text in relation to these 2 aims: see criteria-->
 ----------------
+<!-- Write that there will be descripitve analysis for OFI prevelance...--> 
 
 For continuous variables, medians and interquartile ranges (25th-75th  percentiles) are used. Categorical variables
 are presented using the number of patients and their corresponding percentages of the cohort. Complete case analysis
