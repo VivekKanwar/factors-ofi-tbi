@@ -39,6 +39,11 @@ merged.data <- merged.data %>%
 #Filter data to variables that should be observed, remove patients with missing data 
 #Make first descriptive table 
 
+merged.data <- merged.data %>%
+  mutate(
+    TBI = (if_any(all_of(AIS_columns), ~ Is_TBI_AIS(.))) & Is_TBI_GCS(ed_gcs_sum, pre_gcs_sum)
+  )
+
 
 
 
