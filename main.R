@@ -39,11 +39,17 @@ merged.data <- merged.data %>%
 #Filter data to variables that should be observed, remove patients with missing data 
 #Make first descriptive table 
 
+#Adding column to data that indicates whether the patient has OFI or not 
 merged.data <- merged.data %>%
   mutate(
     TBI = (if_any(all_of(AIS_columns), ~ Is_TBI_AIS(.))) & Is_TBI_GCS(ed_gcs_sum, pre_gcs_sum)
-  )
+  )#How should i handle missing values of either GCS or AIS. They will return as False in the TBI column, maybe does not matter? 
+#I am thinking for my flow chart in results where i filter the patients, do i need to show how many had missing data or maybe enough to show how many had TBI
 
+#Making dataset with only patients that have TBI
+TBI.only.data <- merged.data %>% filter(TBI)
+
+#Cant find DOA as a variable, but filter the data so that they are excluded 
 
 
 

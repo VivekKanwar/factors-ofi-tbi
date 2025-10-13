@@ -1,4 +1,5 @@
 
+
 AIS_columns <- grep("^AISCode_", names(merged.data), value = TRUE) #Identifying the columns/variables that have the AIS Code (String)
 
 Is_TBI_AIS <- function(AIS_code) {
@@ -19,7 +20,6 @@ result_ais
 }
 
 
-
 Is_TBI_GCS <- function (ed_gcs, pre_gcs) { #Function that sees if the patients have had a gcs 8 or under pre hosp or in the ed
   
 ed_is_TBI_GCS  <- suppressWarnings(as.numeric(ed_gcs))  <= 8 #Converts the value in ed_gcs to a number and hides any warnings (which become NA)
@@ -29,3 +29,5 @@ pre_is_TBI_GCS <- suppressWarnings(as.numeric(pre_gcs)) <= 8 # ""
 (!is.na(ed_is_TBI_GCS)  & ed_is_TBI_GCS ) | ( !is.na(pre_is_TBI_GCS) & pre_is_TBI_GCS )#If either the ED or pre GCS is 8 or under return true
   
 }
+
+
