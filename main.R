@@ -36,20 +36,34 @@ merged.data$ofi <- create_ofi(merged.data)
 merged.data <- merged.data %>%
   dplyr::mutate(ofi = factor(ofi, levels = c("Yes","No"))) 
 
-#Filter data to variables that should be observed, remove patients with missing data 
-#Make first descriptive table 
+source("functions/TBI_Definer.R") #Running code that will define TBI
 
 #Adding column to data that indicates whether the patient has OFI or not 
 merged.data <- merged.data %>%
   mutate(
     TBI = (if_any(all_of(AIS_columns), ~ Is_TBI_AIS(.))) & Is_TBI_GCS(ed_gcs_sum, pre_gcs_sum)
-  )#How should i handle missing values of either GCS or AIS. They will return as False in the TBI column, maybe does not matter? 
-#I am thinking for my flow chart in results where i filter the patients, do i need to show how many had missing data or maybe enough to show how many had TBI
+  )
 
 #Making dataset with only patients that have TBI
 TBI.only.data <- merged.data %>% filter(TBI)
 
 #Cant find DOA as a variable, but filter the data so that they are excluded 
+
+source("functions/Variable_filter.R") #Running code that filters my variables 
+
+#Filtering my dataset to only the variables i want, including RTS and On call. How they are derived can be seen in Variable_filter
+TBI.only.filtered <- TBI.only.data %>% select(all_of(Variables_wanted))
+
+#When i run whole code i lose the new variables in TBI.only.data, need to make it into a new dataset somewhere along the lines so i can run the whole code without issues
+#Is it possible to call other functions or other scripts in this main that will run before going to the next line, lika Java.
+
+Final.sample <- Remove_missing_ofi(TBI.only.filtered) #Removing patients with missing Ofi, not really final sample because for my regression i will be removing all patientes with missing 
+
+source("functions/Descriptive_table.R")#Running code that produces my table
+
+Descriptive.table1 #First baseline descriptive table
+
+
 
 
 
