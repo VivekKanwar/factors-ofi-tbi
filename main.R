@@ -54,10 +54,7 @@ source("functions/Variable_filter.R") #Running code that filters my variables
 #Filtering my dataset to only the variables i want, including RTS and On call. How they are derived can be seen in Variable_filter
 TBI.only.filtered <- TBI.only.data %>% select(all_of(Variables_wanted))
 
-#When i run whole code i lose the new variables in TBI.only.data, need to make it into a new dataset somewhere along the lines so i can run the whole code without issues
-#Is it possible to call other functions or other scripts in this main that will run before going to the next line, lika Java.
-
-Final.sample <- Remove_missing_ofi(TBI.only.filtered) #Removing patients with missing Ofi, not really final sample because for my regression i will be removing all patientes with missing 
+Final.sample <- Remove_missing_ofi(TBI.only.filtered) #Removing patients with missing Ofi, not really final sample because for my regression i will be removing all patients with missing 
 
 source("functions/Descriptive_table.R")#Running code that produces my table
 
