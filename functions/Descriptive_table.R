@@ -1,10 +1,12 @@
 
 Descriptive.table1.data <- Final.sample  %>% mutate(                            #continue adding re-labelings and categorise certain continuous variables
   Gender = factor(Gender, levels = c("M", "K"), labels = c("Male", "Female")),
+  
   host_care_level = factor(host_care_level,
                            levels = c(1, 2, 3, 4, 5),
                            labels = c("Emergency Deptartment", "General Ward", "Operating Theatre", "High Dependency Unit", "Critical Care Unit")
                           ),
+  
   Intubation = case_when( #Hur ska jag tänka här angående till exemepel om pre intub är missing men ed inte är det, eller tvärtom. blir det missing?
     pre_intubated == 1 & ed_intubated != 1 ~ "Pre-hospital",                    #only prehospital intubated
     pre_intubated != 1 & ed_intubated == 1 ~ "Emergency department",            #only ED intubated
@@ -12,14 +14,35 @@ Descriptive.table1.data <- Final.sample  %>% mutate(                            
     pre_intubated == 1 & ed_intubated == 1 ~ "Pre-hospital",                    #both yes, count as prehospital
     TRUE ~ NA_character_                                                        #missing
   ),
+  
   Intubation = factor(Intubation,
                       levels = c("None", "Pre-hospital", "Emergency department")
                       ),
   
-  OnCall = factor(OnCall,levels = c(FALSE, TRUE), labels = c("Weekday", "On-call"))
+  OnCall = factor(OnCall,levels = c(FALSE, TRUE), labels = c("Weekday", "On-call")),
+  
+  ed_gcs_cat = cut( #Categorising GCS in ED for the table
+    ed_gcs_sum,
+    breaks = c(3, 4, 6, 9, 13, 16),  # 3, 4–5, 6–8, 9–12, 13–15
+    right  = FALSE,
+    include.lowest = TRUE,
+    labels = c("3", "4–5", "6–8", "9–12", "13–15")
+    ), 
+  ed_gcs_cat = factor(ed_gcs_cat, levels = c("13–15","9–12","6–8","4–5","3")),
+  
+  pre_gcs_cat = cut(
+    pre_gcs_sum, breaks = c(3, 4, 6, 9, 13, 16),
+    right = FALSE, 
+    include.lowest = TRUE,
+    labels = c("3", "4–5", "6–8", "9–12", "13–15")
+    ),
+  pre_gcs_cat = factor(pre_gcs_cat, levels = c("13–15","9–12","6–8","4–5","3"))
+
 )
 
-Variables_table1 <- c("Intubation", setdiff(Variables_wanted, c("pre_intubated", "ed_intubated"))) #Adding the new Intubation label/variable. Can continue to add new variables/labels with setdiff 
+
+Variables_table1 <- c("Intubation", "ed_gcs_cat",  "pre_gcs_cat", #Adding the new label/variables. Can continue to add new variables/labels  
+                      setdiff(Variables_wanted, c("pre_intubated", "ed_intubated"))) #Removing pre_intub and ed_intub from my variables in the table
 
 Descriptive.table1 <- Descriptive.table1.data %>%
   select(all_of(c("ofi", Variables_table1))) %>%
@@ -37,6 +60,8 @@ Descriptive.table1 <- Descriptive.table1.data %>%
                host_vent_days_NotDone ~ "Mechanical ventilation not performed",
                iva_dagar_n ~ "ICU length of stay (days)",
                hosp_los_days ~ "Hospital length of stay (days)",
+               ed_gcs_cat ~ "GCS in ED",
+               pre_gcs_cat ~ "GCS prehospital",
                
                #Continuous
                pt_age_yrs ~ "Age (years)",
@@ -46,8 +71,8 @@ Descriptive.table1 <- Descriptive.table1.data %>%
                ed_sbp_value ~ "ED systolic BP (mmHg)",
                pre_rr_value ~ "Prehospital respiratory rate (/min)",
                ed_rr_value ~ "ED respiratory rate (/min)",
-               pre_gcs_sum ~ "Prehospital GCS total",
-               ed_gcs_sum ~ "ED GCS total",
+               pre_gcs_sum ~ "Prehospital GCS",
+               ed_gcs_sum ~ "ED GCS",
                dt_ed_first_ct ~ "Time to first CT (min)",
                RTS ~ "Revised Trauma Score (RTS)"
                
@@ -60,4 +85,4 @@ Descriptive.table1 <- Descriptive.table1.data %>%
            )%>%
            add_overall() %>%
            bold_labels() %>%  
-           modify_caption("**Table 1.**")
+           modify_caption("**Table 1. Sample characteristics and processes**")

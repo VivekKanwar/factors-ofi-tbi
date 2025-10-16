@@ -33,7 +33,7 @@ TBI.only.data <- TBI.only.data %>%
       ed_gcs_sum >= 9  ~ 3,
       ed_gcs_sum >= 6  ~ 2,
       ed_gcs_sum >= 4  ~ 1,
-      ed_gcs_sum <= 3  ~ 0
+      ed_gcs_sum == 3  ~ 0
     ),
     #Assigning values from 0-4 to SBP in order to calculate RTS
     RTS_Sbp = case_when(
