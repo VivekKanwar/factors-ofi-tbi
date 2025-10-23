@@ -4,7 +4,7 @@ Descriptive.table1.data <- Analysis.sample  %>% mutate(                         
   
   host_care_level = factor(host_care_level,
                            levels = c(1, 2, 3, 4, 5),
-                           labels = c("Emergency Deptartment", "General Ward", "Operating Theatre", "High Dependency Unit", "Critical Care Unit")
+                           labels = c("Emergency Department", "General Ward", "Operating Theatre", "High Dependency Unit", "Critical Care Unit")
                           ),
   
   Intubation = case_when( #Hur ska jag tänka här angående till exemepel om pre intub är missing men ed inte är det, eller tvärtom. blir det missing?

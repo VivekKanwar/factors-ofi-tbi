@@ -32,35 +32,41 @@ merged.data <- merge_data(data, test = TRUE)
 # Add opportunities for improvement outcome
 merged.data$ofi <- create_ofi(merged.data)
 
-#Making OFI a factor and not characters 
+# Making OFI a factor and not characters 
 merged.data <- merged.data %>%
   dplyr::mutate(ofi = factor(ofi, levels = c("No","Yes"))) 
 
-source("functions/TBI_Definer.R") #Running code that will define TBI
+# Calling function that defines TBI based on parametrers and values in the data 
+source("functions/TBI_Definer.R")
 
-#Adding column to data that indicates whether the patient has OFI or not 
+# Adding column to data that indicates whether the patient has OFI or not 
 merged.data <- merged.data %>%
   mutate(
     TBI = (if_any(all_of(AIS_columns), ~ Is_TBI_AIS(.))) & Is_TBI_GCS(ed_gcs_sum, pre_gcs_sum)
   )
 
-#Making dataset with only patients that have TBI
+# Making dataset with only patients that have TBI
 TBI.only.data <- merged.data %>% filter(TBI)
 
-#Cant find DOA as a variable, but filter the data so that they are excluded 
+# Cant find DOA as a variable, but filter the data so that they are excluded 
 
-source("functions/Variable_filter.R") #Running code that filters my variables 
+# Calling for coude that filters my variables 
+source("functions/Variable_filter.R") 
 
-#Filtering my dataset to only the variables i want, including RTS and On call. How they are derived can be seen in Variable_filter
+# Filtering my dataset to only the variables i want, including RTS and On call. How they are derived can be seen in Variable_filter
 TBI.only.filtered <- TBI.only.data %>% select(all_of(Variables_wanted))
 
-Analysis.sample <- Remove_missing_ofi(TBI.only.filtered) #Removing patients with missing Ofi, not really final sample because for my regression i will be removing all patients with missing 
+# Removing patients with missing Ofi, not really final sample because for my regression i will be removing all patients with missing 
+Analysis.sample <- Remove_missing_ofi(TBI.only.filtered) 
 
-source("functions/Descriptive_table.R")#Running code that produces my table
+# Calling for function that produces the initial descriptive table 
+source("functions/Descriptive_table.R")
 
-Descriptive.table1 #First baseline descriptive table
+Descriptive.table1 # First baseline descriptive table
 
-source()
+# Calling for function that cleans the data before analysing, then performing simple regression and producing corresponding tables/figures
+source("functions/Analysis_simple.R")
 
+SR.Table1 # Table describing unadjusted associations 
 
 
