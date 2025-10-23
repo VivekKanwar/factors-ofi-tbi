@@ -33,6 +33,7 @@ SR.results <- map2_dfr(
     mutate(variable = .y)                   #Add the predictor name (from .y) as a column
 )
 
+#Printing ORs of the simple regression models for each predictor 
+
 #SR.results %>%
-  #arrange(p.value) %>%  # 6) sort by smallest p-value first
-  #print(n = Inf)        # 7) print ALL rows (even if long)
+  #print(n = Inf)        #Print ALL rows
