@@ -20,3 +20,7 @@ Is_TBI_GCS <- function (ed_gcs, pre_gcs) { #Function that sees if the patients h
 }
 
 
+#Add to definer subdural haemetoma, contusion bleeding etc. 
+
+#Find paper that defines TBI with AIS codes and use that as definer 
+

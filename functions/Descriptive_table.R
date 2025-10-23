@@ -1,5 +1,5 @@
 
-Descriptive.table1.data <- Final.sample  %>% mutate(                            #continue adding re-labelings and categorise certain continuous variables
+Descriptive.table1.data <- Analysis.sample  %>% mutate(                         #continue adding re-labelings and categorise certain continuous variables
   Gender = factor(Gender, levels = c("M", "K"), labels = c("Male", "Female")),
   
   host_care_level = factor(host_care_level,
@@ -36,8 +36,29 @@ Descriptive.table1.data <- Final.sample  %>% mutate(                            
     include.lowest = TRUE,
     labels = c("3", "4–5", "6–8", "9–12", "13–15")
     ),
-  pre_gcs_cat = factor(pre_gcs_cat, levels = c("13–15","9–12","6–8","4–5","3"))
-
+  pre_gcs_cat = factor(pre_gcs_cat, levels = c("13–15","9–12","6–8","4–5","3")),
+  
+  ofi = factor(ofi,levels = c("Yes", "No"), 
+               labels = c("Opportunity for improvement", "No opportunity for improvement")
+              ),
+  inj_mechanism = factor(inj_mechanism,
+                         levels = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 999),
+                         labels = c(
+                           "Motor vehicle accident (not motorcycle)",
+                           "Motorcycle accident",
+                           "Bicycle accident",
+                           "Injured pedestrian",
+                           "Other vehicle accident (ship, aircraft, train, tram)",
+                           "Gunshot injury",
+                           "Stab or sharp object injury",
+                           "Struck or hit by blunt object",
+                           "Same-level fall (low-energy)",
+                           "Fall from height (high-energy)",
+                           "Explosion injury",
+                           "Other cause of injury (asphyxiation, burns)",
+                           "Not known"
+                           )
+                         )
 )
 
 
@@ -78,10 +99,12 @@ Descriptive.table1 <- Descriptive.table1.data %>%
                
              ),
              missing = "ifany",
+             missing_text = "No data",
              statistic = list(
                all_categorical() ~ "{n} ({p}%)",
                all_continuous() ~ "{median} ({p25}–{p75})"
-             )
+             ),
+             digits = list(RTS~1,pre_gcs_sum~0) #Rounding RTS to 1 decimal 
            )%>%
            add_overall() %>%
            bold_labels() %>%  

@@ -72,7 +72,6 @@ Variables_wanted <- c( #Remove variables or add variables along the way
   
 #Continuous 
 
-
   "pt_age_yrs",                                                                 #Age
   "ISS", "NISS",                                                                #ISS, NISS
   "pre_sbp_value", "ed_sbp_value",                                              #SBP 

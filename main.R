@@ -34,7 +34,7 @@ merged.data$ofi <- create_ofi(merged.data)
 
 #Making OFI a factor and not characters 
 merged.data <- merged.data %>%
-  dplyr::mutate(ofi = factor(ofi, levels = c("Yes","No"))) 
+  dplyr::mutate(ofi = factor(ofi, levels = c("No","Yes"))) 
 
 source("functions/TBI_Definer.R") #Running code that will define TBI
 
@@ -54,13 +54,13 @@ source("functions/Variable_filter.R") #Running code that filters my variables
 #Filtering my dataset to only the variables i want, including RTS and On call. How they are derived can be seen in Variable_filter
 TBI.only.filtered <- TBI.only.data %>% select(all_of(Variables_wanted))
 
-Final.sample <- Remove_missing_ofi(TBI.only.filtered) #Removing patients with missing Ofi, not really final sample because for my regression i will be removing all patients with missing 
+Analysis.sample <- Remove_missing_ofi(TBI.only.filtered) #Removing patients with missing Ofi, not really final sample because for my regression i will be removing all patients with missing 
 
 source("functions/Descriptive_table.R")#Running code that produces my table
 
 Descriptive.table1 #First baseline descriptive table
 
-
+source()
 
 
 
