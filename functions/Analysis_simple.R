@@ -1,5 +1,6 @@
 # Removing all patients that have missing data, EXCEPT iva dagar as that would leave my sample to be 2 ppl
-# and thus the analysis and tables/graphs will be bad. For the real data use drop.na() instead
+# And thus the analysis and tables/graphs will be bad. For the real data use drop.na() instead
+# Using Variable_Organiser function to categorise and organise variables 
 
 Complete.analysis.sample <- Analysis.sample %>%  
   filter(if_all(-iva_dagar_n, ~ !is.na(.))) %>%
@@ -7,7 +8,8 @@ Complete.analysis.sample <- Analysis.sample %>%
   
 
 Predictors <- Complete.analysis.sample %>% 
-  select(-ofi,-iva_dagar_n, -ed_gcs_sum, -pre_gcs_sum, -pre_intubated, - ed_intubated) %>% #For now remove Iva dagar as well because the results wont be ascertained due to lack of data on that 
+  select(-ofi,-iva_dagar_n, -ed_gcs_sum, -pre_gcs_sum, -pre_intubated, 
+         - ed_intubated, -ed_rr_value, -pre_rr_value, -pre_sbp_value, -ed_sbp_value) %>% #For now remove Iva dagar as well because the results wont be ascertained due to lack of data on that 
   names()
 
 #For every variable (Predictors) in the Complete.analysis.sample data, we fit a separate
@@ -53,16 +55,29 @@ SR.Table1 <- tbl_uvregression(
   conf.int = TRUE,
   pvalue_fun = label_style_pvalue(digits = 3),
   label = list(
-    OnCall = "On Call hours",
-    host_care_level = "Highest hospital care level",
-    inj_mechanism = "Mechanism of injury",
-    pt_asa_preinjury = "ASA class prior to injury",
-    pt_age_yrs = "Age",
-    ISS = "Injury Severity Score (ISS)",
-    NISS = "New Injury Severity Score (NISS)"
     
+    Intubation ~ "Intubation",
+    OnCall ~ "On call times",
+    host_care_level ~ "Hospital care level",
+    inj_mechanism  ~ "Mechanism of injury",
+    pt_asa_preinjury ~ "ASA class (preinjury)",
+    hosp_vent_days ~ "Hospital ventilation duration (days)",
+    host_vent_days_NotDone ~ "Mechanical ventilation not performed",    #MAKE INTO YES AND NO FACTOR
+    #iva_dagar_n ~ "ICU length of stay (days)",
+    hosp_los_days ~ "Hospital length of stay (days)",
+    ed_gcs_cat ~ "GCS in ED",
+    pre_gcs_cat ~ "GCS prehospital",
+    pre_rr_cat ~ "RR in ED",
+    ed_rr_cat ~ "RR prehospital",
+    pre_sbp_cat ~ "SBP prehospital",
+    ed_sbp_cat ~ "SBP in ED",
     
-    
+    #Continuous
+    pt_age_yrs ~ "Age (years)",
+    ISS ~ "Injury Severity Score (ISS)",
+    NISS ~ "New Injury Severity Score (NISS)",
+    dt_ed_first_ct ~ "Time to first CT (min)",
+    RTS ~ "Revised Trauma Score (RTS)"
     
   ),
   missing = "ifany",

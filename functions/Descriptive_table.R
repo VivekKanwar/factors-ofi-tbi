@@ -2,14 +2,16 @@
  Descriptive.table1.data <- Analysis.sample  %>% Variable_Organiser()
 
 
-Variables_table1 <- c("Intubation", "ed_gcs_cat",  "pre_gcs_cat", #Adding the new label/variables. Can continue to add new variables/labels  
-                      setdiff(Variables_wanted, c("pre_intubated", "ed_intubated"))) #Removing pre_intub and ed_intub from my variables in the table
+Variables_table1 <- c("Intubation", "ed_gcs_cat",  "pre_gcs_cat", "pre_rr_cat", "ed_rr_cat", "pre_sbp_cat", "ed_sbp_cat", #Adding the new label/variables. Can continue to add new variables/labels  
+                      setdiff(Variables_wanted, c("pre_intubated", "ed_intubated", "pre_sbp_value", 
+                                                  "ed_sbp_value", "pre_rr_value", "ed_rr_value", "pre_gcs_sum",
+                                                  "ed_gcs_sum"))) #Removing pre_intub and ed_intub from my variables in the table
 
 Descriptive.table1 <- Descriptive.table1.data %>%
   select(all_of(c("ofi", Variables_table1))) %>%
            tbl_summary(
              by = ofi,
-             label = list(
+             label = list( # Could make this into a vector and then use it in analysis as well
                
                #Categorical
                Intubation ~ "Intubation",
@@ -23,15 +25,16 @@ Descriptive.table1 <- Descriptive.table1.data %>%
                hosp_los_days ~ "Hospital length of stay (days)",
                ed_gcs_cat ~ "GCS in ED",
                pre_gcs_cat ~ "GCS prehospital",
+               pre_rr_cat ~ "RR in ED",
+               ed_rr_cat ~ "RR prehospital",
+               pre_sbp_cat ~ "SBP prehospital",
+               ed_sbp_cat ~ "SBP in ED",
+               
                
                #Continuous
                pt_age_yrs ~ "Age (years)",
                ISS ~ "Injury Severity Score (ISS)",
                NISS ~ "New Injury Severity Score (NISS)",
-               pre_sbp_value ~ "Prehospital systolic BP (mmHg)",
-               ed_sbp_value ~ "ED systolic BP (mmHg)",
-               pre_rr_value ~ "Prehospital respiratory rate (/min)",
-               ed_rr_value ~ "ED respiratory rate (/min)",
                dt_ed_first_ct ~ "Time to first CT (min)",
                RTS ~ "Revised Trauma Score (RTS)"
                
@@ -42,7 +45,7 @@ Descriptive.table1 <- Descriptive.table1.data %>%
                all_categorical() ~ "{n} ({p}%)",
                all_continuous() ~ "{median} ({p25}–{p75})"
              ),
-             digits = list(RTS~1,pre_gcs_sum~0) #Rounding RTS to 1 decimal 
+             digits = list(RTS~1) #Rounding RTS to 1 decimal 
            )%>%
            add_overall() %>%
            bold_labels() %>%  
