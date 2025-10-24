@@ -20,7 +20,7 @@ Descriptive.table1 <- Descriptive.table1.data %>%
                inj_mechanism  ~ "Mechanism of injury",
                pt_asa_preinjury ~ "ASA class (preinjury)",
                hosp_vent_days ~ "Hospital ventilation duration (days)",
-               host_vent_days_NotDone ~ "Mechanical ventilation not performed",
+               host_vent_days_NotDone ~ "Mechanical ventilation",
                iva_dagar_n ~ "ICU length of stay (days)",
                hosp_los_days ~ "Hospital length of stay (days)",
                ed_gcs_cat ~ "GCS in ED",

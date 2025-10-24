@@ -60,9 +60,9 @@ SR.Table1 <- tbl_uvregression(
     OnCall ~ "On call times",
     host_care_level ~ "Hospital care level",
     inj_mechanism  ~ "Mechanism of injury",
-    pt_asa_preinjury ~ "ASA class (preinjury)",
+    pt_asa_preinjury ~ "ASA class (preinjury)",                         #CATEGORISE IT
     hosp_vent_days ~ "Hospital ventilation duration (days)",
-    host_vent_days_NotDone ~ "Mechanical ventilation not performed",    #MAKE INTO YES AND NO FACTOR
+    host_vent_days_NotDone ~ "Mechanical ventilation",    
     #iva_dagar_n ~ "ICU length of stay (days)",
     hosp_los_days ~ "Hospital length of stay (days)",
     ed_gcs_cat ~ "GCS in ED",

@@ -15,6 +15,30 @@ Variable_Organiser <- function(DataFrame) {
                                     "Critical Care Unit")
                          ),
     
+    # Mechanical ventilation
+    
+    host_vent_days_NotDone = factor(host_vent_days_NotDone,
+                                    levels = c(0,1),
+                                    labels = c("Performed",
+                                               "Not performed")
+                                    ), 
+    
+    # ASA Class
+    
+    pt_asa_preinjury = factor(pt_asa_preinjury,
+                              levels = c(1, 2, 3, 4, 5, 6, 999),
+                              labels = c(
+                                "I",
+                                "II",
+                                "III",
+                                "IV",
+                                "V",
+                                "VI",
+                                "Unknown"
+                                )
+                              ),
+    
+    
     # Intubation
     Intubation = case_when( #Hur ska jag tänka här angående till exemepel om pre intub är missing men ed inte är det, eller tvärtom. blir det missing?
       pre_intubated == 1 & ed_intubated != 1 ~ "Pre-hospital",                    #only prehospital intubated
