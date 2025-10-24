@@ -2,26 +2,12 @@
 # and thus the analysis and tables/graphs will be bad. For the real data use drop.na() instead
 
 Complete.analysis.sample <- Analysis.sample %>%  
-  filter(if_all(-iva_dagar_n, ~ !is.na(.))) %>% 
-  mutate(                         
-  Gender = factor(Gender, levels = c("M", "K"), labels = c("Male", "Female")),
+  filter(if_all(-iva_dagar_n, ~ !is.na(.))) %>%
+  Variable_Organiser()
   
-  host_care_level = factor(host_care_level,
-                           levels = c(1, 2, 3, 4, 5),
-                           labels = c("Emergency Department", 
-                                      "General Ward", 
-                                      "Operating Theatre", 
-                                      "High Dependency Unit", 
-                                      "Critical Care Unit")
-                           )
-  
-  
-  
-  
-  )
 
 Predictors <- Complete.analysis.sample %>% 
-  select(-ofi,-iva_dagar_n) %>% #For now remove Iva dagar as well because the results wont be ascertained due to lack of data on that 
+  select(-ofi,-iva_dagar_n, -ed_gcs_sum, -pre_gcs_sum, -pre_intubated, - ed_intubated) %>% #For now remove Iva dagar as well because the results wont be ascertained due to lack of data on that 
   names()
 
 #For every variable (Predictors) in the Complete.analysis.sample data, we fit a separate
@@ -65,7 +51,22 @@ SR.Table1 <- tbl_uvregression(
   hide_n = TRUE,
   conf.level = 0.95,
   conf.int = TRUE,
-  pvalue_fun = label_style_pvalue(digits = 3)
+  pvalue_fun = label_style_pvalue(digits = 3),
+  label = list(
+    OnCall = "On Call hours",
+    host_care_level = "Highest hospital care level",
+    inj_mechanism = "Mechanism of injury",
+    pt_asa_preinjury = "ASA class prior to injury",
+    pt_age_yrs = "Age",
+    ISS = "Injury Severity Score (ISS)",
+    NISS = "New Injury Severity Score (NISS)"
+    
+    
+    
+    
+  ),
+  missing = "ifany",
+  missing_text = "No data"
 ) %>%
   bold_labels() %>%
   modify_header(
