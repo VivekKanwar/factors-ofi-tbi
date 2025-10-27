@@ -50,7 +50,7 @@ TBI.only.data <- merged.data %>% filter(TBI)
 
 # Cant find DOA as a variable, but filter the data so that they are excluded 
 
-# Calling for coude that filters my variables 
+# Calling for code that filters my variables 
 source("functions/Variable_filter.R") 
 
 # Filtering my dataset to only the variables i want, including RTS and On call. How they are derived can be seen in Variable_filter
@@ -59,7 +59,8 @@ TBI.only.filtered <- TBI.only.data %>% select(all_of(Variables_wanted))
 # Removing patients with missing Ofi, not really final sample because for my regression i will be removing all patients with missing 
 Analysis.sample <- Remove_missing_ofi(TBI.only.filtered) 
 
-# Calling for function that produces the initial descriptive table 
+# Calling for functions that produces the initial descriptive table 
+source("functions/Variable_Organiser.R")
 source("functions/Descriptive_table.R")
 
 Descriptive.table1 # First baseline descriptive table
@@ -69,4 +70,6 @@ source("functions/Analysis_simple.R")
 
 SR.Table1 # Table describing unadjusted associations 
 
+source("functions/Analysis_multi.R")
 
+MV.Table1 # Table describing adjusted associations

@@ -3,7 +3,7 @@ Variable_Organiser <- function(DataFrame) {
   DataFrame %>% mutate(
     
     # Gender
-    Gender = factor(Gender, levels = c("M", "K"), labels = c("Malesssss", "Female")),
+    Gender = factor(Gender, levels = c("M", "K"), labels = c("Male", "Female")),
     
     # Ward level
     host_care_level = factor(host_care_level,

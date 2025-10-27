@@ -7,10 +7,9 @@ Complete.analysis.sample <- Analysis.sample %>%
   Variable_Organiser()
   
 
-Predictors <- Complete.analysis.sample %>% 
-  select(-ofi,-iva_dagar_n, -ed_gcs_sum, -pre_gcs_sum, -pre_intubated, 
-         - ed_intubated, -ed_rr_value, -pre_rr_value, -pre_sbp_value, -ed_sbp_value) %>% #For now remove Iva dagar as well because the results wont be ascertained due to lack of data on that 
-  names()
+Predictors <- Variables_ordered %>%
+  setdiff("iva_dagar_n") %>%
+  intersect(names(Complete.analysis.sample))
 
 #For every variable (Predictors) in the Complete.analysis.sample data, we fit a separate
 #logistic regression model with OFI (Yes/No) as the dependent variable.
@@ -41,7 +40,7 @@ SR.results <- map2_dfr(
 
 # Producing table presenting the ORs ascertained from the above models using tbl_uvreggression() from gtsummary package
 # Hiding no. of patients with hide_n, adding 95% CI and P value with 3 decimals to table
-# Also changing names of columns with modify_header
+# Also changing names of columns with modify_header and list
 
 SR.Table1 <- tbl_uvregression(
   data = Complete.analysis.sample,
@@ -56,19 +55,20 @@ SR.Table1 <- tbl_uvregression(
   pvalue_fun = label_style_pvalue(digits = 3),
   label = list(
     
+    Gender  ~ "Gender",
     Intubation ~ "Intubation",
     OnCall ~ "On call times",
     host_care_level ~ "Hospital care level",
     inj_mechanism  ~ "Mechanism of injury",
-    pt_asa_preinjury ~ "ASA class (preinjury)",                         #CATEGORISE IT
+    pt_asa_preinjury ~ "ASA class (preinjury)",                         
     hosp_vent_days ~ "Hospital ventilation duration (days)",
     host_vent_days_NotDone ~ "Mechanical ventilation",    
     #iva_dagar_n ~ "ICU length of stay (days)",
     hosp_los_days ~ "Hospital length of stay (days)",
-    ed_gcs_cat ~ "GCS in ED",
     pre_gcs_cat ~ "GCS prehospital",
-    pre_rr_cat ~ "RR in ED",
+    ed_gcs_cat ~ "GCS in ED",
     ed_rr_cat ~ "RR prehospital",
+    pre_rr_cat ~ "RR in ED",
     pre_sbp_cat ~ "SBP prehospital",
     ed_sbp_cat ~ "SBP in ED",
     
@@ -89,4 +89,7 @@ SR.Table1 <- tbl_uvregression(
     estimate = "***Unadjusted*** **OR**",
     conf.low = "**95% CI**",            
     p.value = "**p-value**" 
-  )
+  ) %>% 
+  modify_caption("**Table 2. Unadjusted logistic regression analyses of associations between patient level factors 
+  and opportunities for improvement in TBI patients**")
+
