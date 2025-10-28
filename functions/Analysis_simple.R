@@ -1,4 +1,4 @@
-# Removing all patients that have missing data, EXCEPT iva dagar as that would leave my sample to be 2 ppl
+# Removing all patients that have missing data, EXCEPT iva dagar as that would leave my sample to be 2 ppl. Removing the variable all together instead 
 # And thus the analysis and tables/graphs will be bad. For the real data use drop.na() instead
 # Using Variable_Organiser function to categorise and organise variables 
 
@@ -6,7 +6,7 @@ Complete.analysis.sample <- Analysis.sample %>%
   filter(if_all(-iva_dagar_n, ~ !is.na(.))) %>%
   Variable_Organiser()
   
-
+# Removing iva_dagar_n until the synthetic data as it is not used in Complete.analysis. sample 
 Predictors <- Variables_ordered %>%
   setdiff("iva_dagar_n") %>%
   intersect(names(Complete.analysis.sample))
@@ -53,33 +53,7 @@ SR.Table1 <- tbl_uvregression(
   conf.level = 0.95,
   conf.int = TRUE,
   pvalue_fun = label_style_pvalue(digits = 3),
-  label = list(
-    
-    Gender  ~ "Gender",
-    Intubation ~ "Intubation",
-    OnCall ~ "On call times",
-    host_care_level ~ "Hospital care level",
-    inj_mechanism  ~ "Mechanism of injury",
-    pt_asa_preinjury ~ "ASA class (preinjury)",                         
-    hosp_vent_days ~ "Hospital ventilation duration (days)",
-    host_vent_days_NotDone ~ "Mechanical ventilation",    
-    #iva_dagar_n ~ "ICU length of stay (days)",
-    hosp_los_days ~ "Hospital length of stay (days)",
-    pre_gcs_cat ~ "GCS prehospital",
-    ed_gcs_cat ~ "GCS in ED",
-    ed_rr_cat ~ "RR prehospital",
-    pre_rr_cat ~ "RR in ED",
-    pre_sbp_cat ~ "SBP prehospital",
-    ed_sbp_cat ~ "SBP in ED",
-    
-    #Continuous
-    pt_age_yrs ~ "Age (years)",
-    ISS ~ "Injury Severity Score (ISS)",
-    NISS ~ "New Injury Severity Score (NISS)",
-    dt_ed_first_ct ~ "Time to first CT (min)",
-    RTS ~ "Revised Trauma Score (RTS)"
-    
-  ),
+  label = Labels_regression_tables, # For real data use Labels_table1
   missing = "ifany",
   missing_text = "No data"
 ) %>%

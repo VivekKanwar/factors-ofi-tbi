@@ -31,33 +31,11 @@ MV.Table1 <- tbl_regression(
   exponentiate = TRUE,
   conf.level = 0.95,
   conf.int = TRUE,
+  include = all_of(Predictors),
   pvalue_fun = label_style_pvalue(digits = 3),
-  label = list(
-    # Categorical
-    Gender  ~ "Gender",
-    Intubation ~ "Intubation",
-    OnCall ~ "On call times",
-    host_care_level ~ "Hospital care level",
-    inj_mechanism  ~ "Mechanism of injury",
-    pt_asa_preinjury ~ "ASA class (preinjury)",
-    hosp_vent_days ~ "Hospital ventilation duration (days)",
-    host_vent_days_NotDone ~ "Mechanical ventilation",
-    #iva_dagar_n ~ "ICU length of stay (days)",
-    hosp_los_days ~ "Hospital length of stay (days)",
-    ed_gcs_cat ~ "GCS in ED",
-    pre_gcs_cat ~ "GCS prehospital",
-    ed_rr_cat ~ "RR in ED",
-    pre_rr_cat ~ "RR prehospital",
-    ed_sbp_cat ~ "SBP in ED",
-    pre_sbp_cat ~ "SBP prehospital",
-    
-    # Continuous
-    pt_age_yrs ~ "Age (years)",
-    ISS ~ "Injury Severity Score (ISS)",
-    NISS ~ "New Injury Severity Score (NISS)",
-    dt_ed_first_ct ~ "Time to first CT (min)",
-    RTS ~ "Revised Trauma Score (RTS)"
-  )
+  label = Labels_regression_tables, # For real data use Labels_table1
+  missing = "ifany",
+  missing_text = "No data"
 ) %>%
   bold_labels() %>%
   modify_header(
