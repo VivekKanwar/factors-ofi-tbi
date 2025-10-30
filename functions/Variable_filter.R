@@ -69,6 +69,7 @@ Variables_wanted <- c( #Remove variables or add variables along the way
   "pt_asa_preinjury",                                                           #ASA class
   "hosp_vent_days","host_vent_days_NotDone",                                    #Duration of mechanical ventilation
   "iva_dagar_n", "hosp_los_days",  #ICU length stay, check if they match. if missing in iva_dagar_n use care level 5 and match
+  "TBI_sev_cat",                                                                #Severiy of TBI
   
 #Continuous 
 

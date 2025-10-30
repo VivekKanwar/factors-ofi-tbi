@@ -25,12 +25,37 @@ merged.data <- merged.data %>%
 # Calling function that defines TBI based on parametrers and values in the data 
 source("functions/TBI_Definer.R")
 
-# Adding column to data that indicates whether the patient has OFI or not 
+
+# Adding column to data that indicates whether the patient has TBI or not 
+# And also what severity of TBI
+
 merged.data <- merged.data %>%
   mutate(
-    TBI = (if_any(all_of(AIS_columns), ~ Is_TBI_AIS(.))) 
-    # & Is_TBI_GCS(ed_gcs_sum, pre_gcs_sum)
+    
+    # Get max AIS severity among 140-codes
+    TBI_sev_num = apply(select(., all_of(AIS_columns)), 1, Get_TBI_Severity),
+    
+    # 2) TBI = had any 140-code
+    TBI = !is.na(TBI_sev_num),
+    
+    # Map to categories
+    TBI_sev_cat = case_when(
+      is.na(TBI_sev_num)   ~ NA_character_,
+      TBI_sev_num %in% 1:2 ~ "Mild",
+      TBI_sev_num == 3     ~ "Moderate",
+      TBI_sev_num %in% 4:6 ~ "Severe",
+      TRUE                 ~ NA_character_
+    )
   )
+
+# merged.data <- merged.data %>%
+#   mutate(
+#     TBI = (if_any(all_of(AIS_columns), ~ Is_TBI_AIS(.))) 
+#     
+
+# & Is_TBI_GCS(ed_gcs_sum, pre_gcs_sum)
+# )
+
 
 # Making dataset with only patients that have TBI
 TBI.only.data <- merged.data %>% filter(TBI)

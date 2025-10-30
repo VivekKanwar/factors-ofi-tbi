@@ -11,7 +11,7 @@ Variables_ordered <- c(
   # ED physiology
   "ed_gcs_cat", "ed_sbp_cat", "ed_rr_cat",
   # Injury severity (summary scores)
-  "ISS", "NISS", "RTS",
+  "ISS", "NISS", "RTS", "TBI_sev_cat",
   # Interventions & timeliness
   "Intubation", "dt_ed_first_ct", "host_vent_days_NotDone", "hosp_vent_days",
   # System / care pathway
@@ -35,6 +35,7 @@ Labels_table1 <- list(
   ISS ~ "Injury Severity Score (ISS)",
   NISS ~ "New Injury Severity Score (NISS)",
   RTS ~ "Revised Trauma Score (RTS)",
+  TBI_sev_cat ~ "TBI severity",
   Intubation ~ "Intubation",
   dt_ed_first_ct ~ "Time to first CT (min)",
   host_vent_days_NotDone ~ "Mechanical ventilation",
@@ -62,6 +63,7 @@ Labels_regression_tables <- list(
   ISS ~ "Injury Severity Score (ISS)",
   NISS ~ "New Injury Severity Score (NISS)",
   RTS ~ "Revised Trauma Score (RTS)",
+  TBI_sev_cat ~ "TBI severity",
   Intubation ~ "Intubation",
   dt_ed_first_ct ~ "Time to first CT (min)",
   host_vent_days_NotDone ~ "Mechanical ventilation",
