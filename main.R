@@ -10,10 +10,11 @@ noacsr::source_all_functions()
 library(rofi) # installed using remotes::install_github("martingerdin/rofi")
 
 # Import data
-data <- import_data(test = TRUE)
+data <- import_data()
 
 # Merge data
-merged.data <- merge_data(data, test = TRUE)
+merged.data <- merge_data(data)
+merged.data <- merged.data[, !duplicated(names(merged.data))]
 
 # Add opportunities for improvement outcome
 merged.data$ofi <- create_ofi(merged.data)
@@ -47,15 +48,6 @@ merged.data <- merged.data %>%
       TRUE                 ~ NA_character_
     )
   )
-
-# merged.data <- merged.data %>%
-#   mutate(
-#     TBI = (if_any(all_of(AIS_columns), ~ Is_TBI_AIS(.))) 
-#     
-
-# & Is_TBI_GCS(ed_gcs_sum, pre_gcs_sum)
-# )
-
 
 # Making dataset with only patients that have TBI
 TBI.only.data <- merged.data %>% filter(TBI)

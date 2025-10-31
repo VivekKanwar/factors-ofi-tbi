@@ -18,6 +18,8 @@ Variables_ordered <- c(
   "OnCall", "host_care_level",
   # Utilization / outcomes
   "iva_dagar_n", "hosp_los_days"
+  
+  #   All intubated so not needed and if i run the code it does not work
 )
 
 # Reusable labels list for tables
@@ -66,9 +68,12 @@ Labels_regression_tables <- list(
   TBI_sev_cat ~ "TBI severity",
   Intubation ~ "Intubation",
   dt_ed_first_ct ~ "Time to first CT (min)",
-  host_vent_days_NotDone ~ "Mechanical ventilation",
   hosp_vent_days ~ "Hospital ventilation duration (days)",
   OnCall ~ "On-call times",
   host_care_level ~ "Hospital care level",
+  iva_dagar_n ~ "ICU length of stay (days)",
   hosp_los_days ~ "Hospital length of stay (days)"
 )
+
+#   host_vent_days_NotDone ~ "Mechanical ventilation",
+

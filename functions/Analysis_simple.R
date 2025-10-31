@@ -1,14 +1,14 @@
-# Removing all patients that have missing data, EXCEPT iva dagar as that would leave my sample to be 2 ppl. Removing the variable all together instead 
-# And thus the analysis and tables/graphs will be bad. For the real data use drop.na() instead
+# Removing all patients that have NA in any of columns so i have complete data
 # Using Variable_Organiser function to categorise and organise variables 
 
 Complete.analysis.sample <- Analysis.sample %>%  
-  filter(if_all(-iva_dagar_n, ~ !is.na(.))) %>%
-  Variable_Organiser()
+  filter(if_all(everything(), ~ !is.na(.))) %>%
+  Variable_Organiser() %>%
+  select(-host_vent_days_NotDone) # Removing if ventilation was performed or not as all patients where intubated, i.e. no contrast
+
   
-# Removing iva_dagar_n until the synthetic data as it is not used in Complete.analysis. sample 
 Predictors <- Variables_ordered %>%
-  setdiff("iva_dagar_n") %>%
+  setdiff("host_vent_days_NotDone") %>%
   intersect(names(Complete.analysis.sample))
 
 #For every variable (Predictors) in the Complete.analysis.sample data, we fit a separate
@@ -53,7 +53,7 @@ SR.Table1 <- tbl_uvregression(
   conf.level = 0.95,
   conf.int = TRUE,
   pvalue_fun = label_style_pvalue(digits = 3),
-  label = Labels_regression_tables, # For real data use Labels_table1
+  label = Labels_regression_tables, 
   missing = "ifany",
   missing_text = "No data"
 ) %>%

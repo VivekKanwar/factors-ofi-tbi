@@ -21,7 +21,7 @@ Variable_Organiser <- function(DataFrame) {
                                     levels = c(0,1),
                                     labels = c("Performed",
                                                "Not performed")
-                                    ), 
+                                    ),
     
     # ASA Class
     
@@ -148,3 +148,4 @@ Variable_Organiser <- function(DataFrame) {
     )
 
 }
+

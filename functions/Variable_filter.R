@@ -17,7 +17,7 @@ TBI.only.data <- TBI.only.data %>% #probs need to change the name of this and ma
     OnCall = case_when(
       is.na(ArrivalTime) ~ NA,                   #Keep missing timestamps
       ArrivalDay %in% c(6, 7) ~ TRUE,            #Saturday (6) or Sunday (7)
-      ArrivalHour < 8 | ArrivalHour > 17 ~ TRUE, #outside 08–17
+      ArrivalHour < 8 | ArrivalHour >= 17 ~ TRUE, #outside 08–17
       TRUE ~ FALSE                               # else, within working hours
     )
   )
