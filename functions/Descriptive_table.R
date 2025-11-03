@@ -1,6 +1,4 @@
-
 Descriptive.table1.data <- Analysis.sample  %>% Variable_Organiser()
-
 
 source("functions/Variables_order_and_labels.R")
 

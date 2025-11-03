@@ -1,7 +1,3 @@
-
-# Should we do a model adjusting for interactions as well, not only confounders? And we can use interaction model on 
-# the predictors which are statistically significant in the Multivaribale analysis?
-
 # Producing code that joins all variable names in the predictor vector into a single string separated by +
 # Adding the ofi at the start and then converting it into a formula to fit in the regression model glm(formula, data, family)
 
@@ -46,5 +42,3 @@ MV.Table1 <- tbl_regression(
   ) %>% 
   modify_caption("**Table 3. Adjusted logistic regression analyses of associations between patient level factors 
   and opportunities for improvement in TBI patients**")
-
-#add_global_p()  # overall p value for each category if wanted

@@ -1,9 +1,3 @@
-## Source all functions (if you tick the box "Source on save" in
-## RStudio functions will be automatically sourced when you save
-## them). They all need to be sourced however when you compile your
-## manuscript file or run this file as a job, as that happens in a
-## clean R session.
-
 noacsr::source_all_functions()
 
 # Load packages
@@ -25,7 +19,6 @@ merged.data <- merged.data %>%
 
 # Calling function that defines TBI based on parametrers and values in the data 
 source("functions/TBI_Definer.R")
-
 
 # Adding column to data that indicates whether the patient has TBI or not 
 # And also what severity of TBI

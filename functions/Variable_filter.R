@@ -22,12 +22,14 @@ TBI.only.data <- TBI.only.data %>% #probs need to change the name of this and ma
     )
   )
 
-#Adding column with RTS, SBP and RR are already present in the dataset but as i did it for Gcs i also did it for SBP and RR
+# Adding column with RTS, SBP and RR are already present in the dataset 
+# But to be consistent all three were coded for
+# Need to consider 999 values and how ti interpret them 
 
 TBI.only.data <- TBI.only.data %>%
   mutate(
-    #Assigning values from 0-4 to GCS in order to calculate RTS
-    RTS_Gcs = case_when(  #If else x many
+    # Assigning values from 0-4 to GCS in order to calculate RTS
+    RTS_Gcs = case_when(
       is.na(ed_gcs_sum) ~ NA_real_,
       ed_gcs_sum >= 13 ~ 4,
       ed_gcs_sum >= 9  ~ 3,
@@ -35,7 +37,7 @@ TBI.only.data <- TBI.only.data %>%
       ed_gcs_sum >= 4  ~ 1,
       ed_gcs_sum == 3  ~ 0
     ),
-    #Assigning values from 0-4 to SBP in order to calculate RTS
+    # Assigning values from 0-4 to SBP in order to calculate RTS
     RTS_Sbp = case_when(
       is.na(ed_sbp_value) ~ NA_real_,
       ed_sbp_value > 89  ~ 4,
@@ -44,7 +46,7 @@ TBI.only.data <- TBI.only.data %>%
       ed_sbp_value >= 1  ~ 1,
       ed_sbp_value == 0  ~ 0
     ),
-    #Assigning values from 0-4 to RR in order to calculate RTS
+    # Assigning values from 0-4 to RR in order to calculate RTS
     RTS_Rr = case_when(
       is.na(ed_rr_value) ~ NA_real_,
       ed_rr_value >= 10 & ed_rr_value <= 29 ~ 4,
@@ -53,34 +55,36 @@ TBI.only.data <- TBI.only.data %>%
       ed_rr_value >= 1 & ed_rr_value <= 5   ~ 1,
       ed_rr_value == 0                      ~ 0
     ),
-    RTS = 0.9368 * RTS_Gcs + 0.7326 * RTS_Sbp + 0.2908 * RTS_Rr #Calculating RTS according the published coefficients 
+    RTS = 0.9368 * RTS_Gcs + 0.7326 * RTS_Sbp + 0.2908 * RTS_Rr # Calculating RTS according the published coefficients 
   ) %>%
-  select(-RTS_Gcs, -RTS_Sbp, -RTS_Rr) #Choosing not to include these values in my dataset, Dock iom jag filtrerar TBI.only.data så borde det kvitta
+  select(-RTS_Gcs, -RTS_Sbp, -RTS_Rr) # Choosing not to include these values in the dataset
 
 
-Variables_wanted <- c( #Remove variables or add variables along the way 
+Variables_wanted <- c( # Remove variables or add variables along the way 
 
-#Categorical 
-  "Gender",                                                                     #Sex
-  "OnCall",                                                                     #ON call times -> hours outside of 08:00 - 17:00, or Saturday and Sunday
-  "host_care_level",                                                            #Hospital care level  
-  "pre_intubated","ed_intubated",                                               #Intubation status
-  "inj_mechanism",                                                              #Mechanism of injury, vad betyder siffrorna?
-  "pt_asa_preinjury",                                                           #ASA class
-  "hosp_vent_days","host_vent_days_NotDone",                                    #Duration of mechanical ventilation
-  "iva_dagar_n", "hosp_los_days",  #ICU length stay, check if they match. if missing in iva_dagar_n use care level 5 and match
-  "TBI_sev_cat",                                                                #Severiy of TBI
+# Categorical 
+  "Gender",                                                                     # Sex
+  "OnCall",                                                                     # On-call times -> hours outside of 08:00 - 17:00, or Saturday and Sunday
+  "host_care_level",                                                            # Hospital care level  
+  "pre_intubated","ed_intubated",                                               # Intubation status
+  "inj_mechanism",                                                              # Mechanism of injury
+  "pt_asa_preinjury",                                                           # ASA class
+  "host_vent_days_NotDone",                                                     # Mechanical ventilation
+  "iva_dagar_n", "hosp_los_days",                                               # Length of stay 
+  "TBI_sev_cat",                                                                # Severiy of TBI
   
-#Continuous 
+# Continuous 
 
-  "pt_age_yrs",                                                                 #Age
-  "ISS", "NISS",                                                                #ISS, NISS
-  "pre_sbp_value", "ed_sbp_value",                                              #SBP 
-  "pre_rr_value", "ed_rr_value",                                                #RR
-  "pre_gcs_sum", "ed_gcs_sum",                                                  #GCS
-  "dt_ed_first_ct",                                                             #Time to first CT
-  "RTS",                                                                        #RTS
+  "pt_age_yrs",                                                                 # Age
+  "ISS", "NISS",                                                                # ISS, NISS
+  "ed_sbp_value",                                                               # SBP 
+  "ed_rr_value",                                                                # RR
+  "ed_gcs_sum",                                                                 # GCS
+  "dt_ed_first_ct",                                                             # Time to first CT
+  "RTS",                                                                        # RTS
 
-#Outcome 
+# Outcome 
   "ofi"
 )
+
+# "hosp_vent_days"

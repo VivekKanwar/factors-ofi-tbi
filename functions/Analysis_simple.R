@@ -2,14 +2,14 @@
 # Using Variable_Organiser function to categorise and organise variables 
 
 Complete.analysis.sample <- Analysis.sample %>%  
-  filter(if_all(everything(), ~ !is.na(.))) %>%
-  Variable_Organiser() %>%
-  select(-host_vent_days_NotDone) # Removing if ventilation was performed or not as all patients where intubated, i.e. no contrast
-
+  Variable_Organiser()  
   
 Predictors <- Variables_ordered %>%
-  setdiff("host_vent_days_NotDone") %>%
   intersect(names(Complete.analysis.sample))
+
+Complete.analysis.sample <- Complete.analysis.sample %>%  
+  filter(if_all(all_of(Predictors), ~ !is.na(.)))        # drop rows missing any predictor
+  
 
 #For every variable (Predictors) in the Complete.analysis.sample data, we fit a separate
 #logistic regression model with OFI (Yes/No) as the dependent variable.
@@ -18,15 +18,9 @@ Predictors <- Variables_ordered %>%
 SR.model <- map(Predictors, ~ glm(reformulate(.x, "ofi"),      
                                      data = Complete.analysis.sample,
                                      family = binomial)
-                )                                                              
+                )   
+
 # Code below loops through both SR.model and predictors in parallel.
-# For each pair (model, variable name/predictor):
-#   Extracts regression results (OR, 95% CI, p-value) using broom::tidy()
-#   Converts log-odds to odds ratios (exponentiate = TRUE)
-#   Filters out the intercept term
-#   Adds a column called 'variable' with the name of the predictor (.y)
-#   Combines all small result tables into one large data frame (`SR.results`)
-#   using row-binding (_dfr = "data frame row-bind").
 
 SR.results <- map2_dfr(
   SR.model,                #List of fitted glm() models (one per predictor)
@@ -66,4 +60,3 @@ SR.Table1 <- tbl_uvregression(
   ) %>% 
   modify_caption("**Table 2. Unadjusted logistic regression analyses of associations between patient level factors 
   and opportunities for improvement in TBI patients**")
-
