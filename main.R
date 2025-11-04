@@ -6,7 +6,7 @@ library(rofi) # installed using remotes::install_github("martingerdin/rofi")
 # Import data
 data <- import_data()
 
-# Merge data
+# Merge data and remove duplicate variables/columns
 merged.data <- merge_data(data)
 merged.data <- merged.data[, !duplicated(names(merged.data))]
 

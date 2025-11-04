@@ -28,34 +28,50 @@ TBI.only.data <- TBI.only.data %>% #probs need to change the name of this and ma
 
 TBI.only.data <- TBI.only.data %>%
   mutate(
-    # Assigning values from 0-4 to GCS in order to calculate RTS
-    RTS_Gcs = case_when(
-      is.na(ed_gcs_sum) ~ NA_real_,
-      ed_gcs_sum >= 13 ~ 4,
-      ed_gcs_sum >= 9  ~ 3,
-      ed_gcs_sum >= 6  ~ 2,
-      ed_gcs_sum >= 4  ~ 1,
-      ed_gcs_sum == 3  ~ 0
+    # Assigning values from 0-4 in order to calculate RTS
+    ed_gcs_clean <- case_when(
+      is.na(ed_gcs_sum) | ed_gcs_sum %in% c(99, 999) ~ NA_real_,
+      TRUE                                           ~ as.numeric(ed_gcs_sum)
     ),
-    # Assigning values from 0-4 to SBP in order to calculate RTS
-    RTS_Sbp = case_when(
-      is.na(ed_sbp_value) ~ NA_real_,
-      ed_sbp_value > 89  ~ 4,
-      ed_sbp_value >= 76 ~ 3,
-      ed_sbp_value >= 50 ~ 2,
-      ed_sbp_value >= 1  ~ 1,
-      ed_sbp_value == 0  ~ 0
+    
+    ed_sbp_clean <- case_when(
+      is.na(ed_sbp_value) | ed_sbp_value == 999      ~ NA_real_,
+      TRUE                                           ~ as.numeric(ed_sbp_value)
     ),
-    # Assigning values from 0-4 to RR in order to calculate RTS
-    RTS_Rr = case_when(
-      is.na(ed_rr_value) ~ NA_real_,
-      ed_rr_value >= 10 & ed_rr_value <= 29 ~ 4,
-      ed_rr_value > 29                      ~ 3,
-      ed_rr_value >= 6 & ed_rr_value <= 9   ~ 2,
-      ed_rr_value >= 1 & ed_rr_value <= 5   ~ 1,
-      ed_rr_value == 0                      ~ 0
+    
+    ed_rr_clean <- case_when(
+      is.na(ed_rr_value) | ed_rr_value %in% c(99, 999) ~ NA_real_,
+      TRUE                                             ~ as.numeric(ed_rr_value)
     ),
-    RTS = 0.9368 * RTS_Gcs + 0.7326 * RTS_Sbp + 0.2908 * RTS_Rr # Calculating RTS according the published coefficients 
+    
+    RTS_Gcs <- case_when(
+      is.na(ed_gcs_clean) ~ NA_real_,
+      ed_gcs_clean >= 13  ~ 4,
+      ed_gcs_clean >= 9   ~ 3,
+      ed_gcs_clean >= 6   ~ 2,
+      ed_gcs_clean >= 4   ~ 1,
+      ed_gcs_clean == 3   ~ 0
+    ),
+    
+    RTS_Sbp <- case_when(
+      is.na(ed_sbp_clean) ~ NA_real_,
+      ed_sbp_clean > 89   ~ 4,
+      ed_sbp_clean >= 76  ~ 3,
+      ed_sbp_clean >= 50  ~ 2,
+      ed_sbp_clean >= 1   ~ 1,
+      ed_sbp_clean == 0   ~ 0
+    ),
+    
+    RTS_Rr <- case_when(
+      is.na(ed_rr_clean)               ~ NA_real_,
+      ed_rr_clean >= 10 & ed_rr_clean <= 29 ~ 4,
+      ed_rr_clean > 29                 ~ 3,
+      ed_rr_clean >= 6  & ed_rr_clean <= 9  ~ 2,
+      ed_rr_clean >= 1  & ed_rr_clean <= 5  ~ 1,
+      ed_rr_clean == 0                  ~ 0
+    ),
+    
+    RTS <- 0.9368 * RTS_Gcs + 0.7326 * RTS_Sbp + 0.2908 * RTS_Rr # Calculating RTS according the published coefficients 
   ) %>%
   select(-RTS_Gcs, -RTS_Sbp, -RTS_Rr) # Choosing not to include these values in the dataset
 
