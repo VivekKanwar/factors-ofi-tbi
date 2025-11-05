@@ -1,7 +1,7 @@
 # Removing all patients that have NA in any of columns so i have complete data
 # Using Variable_Organiser function to categorise and organise variables 
 
-exclude_vars <- c("NISS", "RTS")
+exclude_vars <- c("NISS", "ed_gcs_cat", "ed_sbp_cat", "ed_rr_cat")
 
 Complete.analysis.sample <- Analysis.sample %>%
   Variable_Organiser() %>%

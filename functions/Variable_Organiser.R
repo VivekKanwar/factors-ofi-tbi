@@ -5,6 +5,9 @@ Variable_Organiser <- function(DataFrame) {
     # Gender
     Gender = factor(Gender, levels = c("M", "K"), labels = c("Male", "Female")),
     
+    # CT to 10 min increments
+    dt_ed_first_ct = dt_ed_first_ct / 10,
+    
     # Ward level
     host_care_level = factor(host_care_level,
                          levels = c(1:5),
@@ -47,9 +50,8 @@ Variable_Organiser <- function(DataFrame) {
       TRUE ~ NA_character_                                                      # both unknown or conflicting weirdness
     ),
     
-    Intubation = factor(
-      Intubation,
-      levels = c("None", "Pre-hospital", "Emergency department")
+    Intubation = factor(Intubation,
+                        levels = c("Emergency department", "Pre-hospital", "None")
     ), 
     
     # On Call
@@ -98,7 +100,7 @@ Variable_Organiser <- function(DataFrame) {
       levels = c(">89", "76–89", "50–75", "0–49")  
     ),
     
-    # Injury mechanism 
+    # Injury type 
     inj_dominant = case_when(
       inj_dominant == 999 ~ NA_real_,     # convert 999 to missing
       TRUE                 ~ as.numeric(inj_dominant)
