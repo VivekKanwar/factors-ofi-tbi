@@ -29,51 +29,49 @@ TBI.only.data <- TBI.only.data %>% #probs need to change the name of this and ma
 TBI.only.data <- TBI.only.data %>%
   mutate(
     # Assigning values from 0-4 in order to calculate RTS
-    ed_gcs_clean <- case_when(
+    ed_gcs_clean = case_when(
       is.na(ed_gcs_sum) | ed_gcs_sum %in% c(99, 999) ~ NA_real_,
-      TRUE                                           ~ as.numeric(ed_gcs_sum)
-    ),
-    
-    ed_sbp_clean <- case_when(
-      is.na(ed_sbp_value) | ed_sbp_value == 999      ~ NA_real_,
-      TRUE                                           ~ as.numeric(ed_sbp_value)
-    ),
-    
-    ed_rr_clean <- case_when(
-      is.na(ed_rr_value) | ed_rr_value %in% c(99, 999) ~ NA_real_,
-      TRUE                                             ~ as.numeric(ed_rr_value)
-    ),
-    
-    RTS_Gcs <- case_when(
-      is.na(ed_gcs_clean) ~ NA_real_,
-      ed_gcs_clean >= 13  ~ 4,
-      ed_gcs_clean >= 9   ~ 3,
-      ed_gcs_clean >= 6   ~ 2,
-      ed_gcs_clean >= 4   ~ 1,
-      ed_gcs_clean == 3   ~ 0
-    ),
-    
-    RTS_Sbp <- case_when(
-      is.na(ed_sbp_clean) ~ NA_real_,
-      ed_sbp_clean > 89   ~ 4,
-      ed_sbp_clean >= 76  ~ 3,
-      ed_sbp_clean >= 50  ~ 2,
-      ed_sbp_clean >= 1   ~ 1,
-      ed_sbp_clean == 0   ~ 0
-    ),
-    
-    RTS_Rr <- case_when(
-      is.na(ed_rr_clean)               ~ NA_real_,
-      ed_rr_clean >= 10 & ed_rr_clean <= 29 ~ 4,
-      ed_rr_clean > 29                 ~ 3,
-      ed_rr_clean >= 6  & ed_rr_clean <= 9  ~ 2,
-      ed_rr_clean >= 1  & ed_rr_clean <= 5  ~ 1,
-      ed_rr_clean == 0                  ~ 0
-    ),
-    
-    RTS <- 0.9368 * RTS_Gcs + 0.7326 * RTS_Sbp + 0.2908 * RTS_Rr # Calculating RTS according the published coefficients 
-  ) %>%
-  select(-RTS_Gcs, -RTS_Sbp, -RTS_Rr) # Choosing not to include these values in the dataset
+        TRUE                                           ~ as.numeric(ed_gcs_sum)
+      ),
+      ed_sbp_clean = case_when(
+        is.na(ed_sbp_value) | ed_sbp_value == 999      ~ NA_real_,
+        TRUE                                           ~ as.numeric(ed_sbp_value)
+      ),
+      ed_rr_clean = case_when(
+        is.na(ed_rr_value) | ed_rr_value %in% c(99, 999) ~ NA_real_,
+        TRUE                                             ~ as.numeric(ed_rr_value)
+      ),
+      
+      # RTS components (0–4)
+      RTS_Gcs = case_when(
+        is.na(ed_gcs_clean) ~ NA_real_,
+        ed_gcs_clean >= 13  ~ 4,
+        ed_gcs_clean >= 9   ~ 3,
+        ed_gcs_clean >= 6   ~ 2,
+        ed_gcs_clean >= 4   ~ 1,
+        ed_gcs_clean == 3   ~ 0
+      ),
+      RTS_Sbp = case_when(
+        is.na(ed_sbp_clean) ~ NA_real_,
+        ed_sbp_clean > 89   ~ 4,
+        ed_sbp_clean >= 76  ~ 3,
+        ed_sbp_clean >= 50  ~ 2,
+        ed_sbp_clean >= 1   ~ 1,
+        ed_sbp_clean == 0   ~ 0
+      ),
+      RTS_Rr = case_when(
+        is.na(ed_rr_clean)                    ~ NA_real_,
+        ed_rr_clean >= 10 & ed_rr_clean <= 29 ~ 4,
+        ed_rr_clean > 29                      ~ 3,
+        ed_rr_clean >= 6  & ed_rr_clean <= 9  ~ 2,
+        ed_rr_clean >= 1  & ed_rr_clean <= 5  ~ 1,
+        ed_rr_clean == 0                      ~ 0
+      ),
+      
+      # weighted RTS using published coeffecients
+      RTS = 0.9368 * RTS_Gcs + 0.7326 * RTS_Sbp + 0.2908 * RTS_Rr
+    ) %>%
+    select(-RTS_Gcs, -RTS_Sbp, -RTS_Rr)  # Drop intermediates
 
 
 Variables_wanted <- c( # Remove variables or add variables along the way 
@@ -83,7 +81,7 @@ Variables_wanted <- c( # Remove variables or add variables along the way
   "OnCall",                                                                     # On-call times -> hours outside of 08:00 - 17:00, or Saturday and Sunday
   "host_care_level",                                                            # Hospital care level  
   "pre_intubated","ed_intubated",                                               # Intubation status
-  "inj_mechanism",                                                              # Mechanism of injury
+  "inj_dominant",                                                               # Injury type
   "pt_asa_preinjury",                                                           # ASA class
   "host_vent_days_NotDone",                                                     # Mechanical ventilation
   "iva_dagar_n", "hosp_los_days",                                               # Length of stay 

@@ -99,27 +99,15 @@ Variable_Organiser <- function(DataFrame) {
     ),
     
     # Injury mechanism 
-    inj_mechanism = case_when(
-      inj_mechanism == 999 ~ NA_real_,     # convert 999 to missing
-      TRUE                 ~ as.numeric(inj_mechanism)
+    inj_dominant = case_when(
+      inj_dominant == 999 ~ NA_real_,     # convert 999 to missing
+      TRUE                 ~ as.numeric(inj_dominant)
     ),
     
-    inj_mechanism = factor(
-      inj_mechanism,
-      levels = c(1:12),
-      labels = c(
-        "Motor vehicle accident (not motorcycle)",
-        "Motorcycle accident",
-        "Bicycle accident",
-        "Injured pedestrian",
-        "Other vehicle accident (ship, aircraft, train, tram)",
-        "Gunshot injury",
-        "Stab or sharp object injury",
-        "Struck or hit by blunt object",
-        "Same-level fall (low-energy)",
-        "Fall from height (high-energy)",
-        "Explosion injury",
-        "Other cause of injury (asphyxiation, burns)")
+    inj_dominant = factor(
+      inj_dominant,
+      levels = c(1,2),
+      labels = c("Blunt","Penetrating")
       )
     )
 }

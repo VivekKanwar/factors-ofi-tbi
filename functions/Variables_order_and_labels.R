@@ -4,8 +4,8 @@
 Variables_ordered <- c(
   # Demographics & baseline
   "Gender", "pt_age_yrs", "pt_asa_preinjury",
-  # Mechanism
-  "inj_mechanism",
+  # Type
+  "inj_dominant",
   # ED physiology
   "ed_gcs_cat", "ed_sbp_cat", "ed_rr_cat",
   # Injury severity (summary scores)
@@ -27,7 +27,7 @@ Labels_table1 <- list(
   Gender ~ "Gender",
   pt_age_yrs ~ "Age (years)",
   pt_asa_preinjury ~ "ASA class (preinjury)",
-  inj_mechanism ~ "Mechanism of injury",
+  inj_dominant ~ "Injury type",
   ed_gcs_cat ~ "GCS in ED",
   ed_sbp_cat ~ "SBP in ED",
   ed_rr_cat ~ "RR in ED",
@@ -53,13 +53,11 @@ Labels_regression_tables <- list(
   Gender ~ "Gender",
   pt_age_yrs ~ "Age (years)",
   pt_asa_preinjury ~ "ASA class (preinjury)",
-  inj_mechanism ~ "Mechanism of injury",
+  inj_dominant ~ "Injury type",
   ed_gcs_cat ~ "GCS in ED",
   ed_sbp_cat ~ "SBP in ED",
   ed_rr_cat ~ "RR in ED",
   ISS ~ "Injury Severity Score (ISS)",
-  NISS ~ "New Injury Severity Score (NISS)",
-  RTS ~ "Revised Trauma Score (RTS)",
   TBI_sev_cat ~ "TBI severity",
   Intubation ~ "Intubation",
   dt_ed_first_ct ~ "Time to first CT (min)",
@@ -74,5 +72,5 @@ Labels_regression_tables <- list(
 # pre_gcs_cat ~ "GCS prehospital",
 # pre_sbp_cat ~ "SBP prehospital",
 # pre_rr_cat ~ "RR prehospital",
-
-
+# NISS ~ "New Injury Severity Score (NISS)",
+# RTS ~ "Revised Trauma Score (RTS)",

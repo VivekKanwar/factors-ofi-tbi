@@ -1,11 +1,15 @@
 # Removing all patients that have NA in any of columns so i have complete data
 # Using Variable_Organiser function to categorise and organise variables 
 
-Complete.analysis.sample <- Analysis.sample %>%  
-  Variable_Organiser()  
-  
+exclude_vars <- c("NISS", "RTS")
+
+Complete.analysis.sample <- Analysis.sample %>%
+  Variable_Organiser() %>%
+  select(-all_of(exclude_vars))
+
 Predictors <- Variables_ordered %>%
-  intersect(names(Complete.analysis.sample))
+  intersect(names(Complete.analysis.sample)) %>%
+  setdiff(exclude_vars)
 
 Complete.analysis.sample <- Complete.analysis.sample %>%  
   filter(if_all(all_of(Predictors), ~ !is.na(.)))        # drop rows missing any predictor
