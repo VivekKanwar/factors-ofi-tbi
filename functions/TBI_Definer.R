@@ -1,6 +1,3 @@
-
-AIS_columns <- grep("^AISCode_", names(merged.data), value = TRUE) #Identifying the columns/variables that have the AIS Code (String)
-
 # Function to extract the maximum AIS severity from intracranial (1xxxxx.x) codes
 Get_TBI_Severity <- function(AIS_code) {
   AIS_code <- str_trim(as.character(AIS_code))  
@@ -9,7 +6,7 @@ Get_TBI_Severity <- function(AIS_code) {
   AIS_code <- AIS_code[!is.na(AIS_code) & AIS_code != ""]
   if (length(AIS_code) == 0) return(NA_real_)
   
-  # Keep only 140xxx.x codes 
+  # Keep only 1xxxxx.x codes 
   AIS_code <- AIS_code[str_detect(AIS_code, "^1")]
   if (length(AIS_code) == 0) return(NA_real_)
   
