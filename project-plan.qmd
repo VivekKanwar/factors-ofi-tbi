@@ -89,17 +89,15 @@ TQIP have been developed to identify and correct such lapses, with the WHO stres
 to corrective actions and verification of bettered outcomes, most research has been done on mixed trauma cohorts.
 This, on the other hand, leaves TBI-specific vulnerabilities undercharacterised. Recent work by *Szolnoky et al.*
 suggests that, despite overall declines in OFI, patients with TBI remain at risk of preventable shortcomings,
-underscoring the need for TBI-specific quality improvement efforts [@Szolnoky2025]. <!--CP: Therefore we hypothesis ze that is possible to identify new OFis related to TBI?? 
-CP: See if something like that can be a hypothesis -->
+underscoring the need for TBI-specific quality improvement efforts [@Szolnoky2025]. Therefore, we
+hypothesise that despite existing trauma quality improvement measures, new OFIs can be identified in
+the care of adult trauma patients with TBI.
 
 Aim
 =====
-This study aims to identify and describe OFI in the care of adult trauma patients with TBI, and to examine patient- and process-related factors associated with their occurrence. <!-- CP: You need to phrase these aims in a more concrete way: this what this course demands..see also next comment E.g. (but for your supervisor to help with) Identify specific OFI by doing what? I mean , an identification require that certain parameters will be used and confirmed
-If too long M&M will describe these parameters)” -->
-
-<!-- CP: Pls describe this aim in a Yes/No question e..g determine whether the identified OFI are associated with patient and process related factors. Ask for your supervisor to help revising -->
-
-<!--CP: Can you explain more concretely What this means? Occurrence of OPI?-->
+As such, this study aims to determine whether OFIs occur in the care of adult trauma patients with
+TBI, and, if so, to quantify their frequency, describe their characteristics, and examine whether
+patient- and process-related factors are associated with their occurrence.
 
 Methods
 =======

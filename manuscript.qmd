@@ -144,18 +144,61 @@ taking account of sampling strategy
 Results
 =======
 
-<!-- 
+
 
 Participants
 ------------
 
-(a) Report numbers of individuals at each stage of study—eg numbers
+<!-- (a) Report numbers of individuals at each stage of study—eg numbers
 potentially eligible, examined for eligibility, confirmed eligible,
 included in the study, completing follow-up, and analysed
 
 (b) Give reasons for non-participation at each stage
 
-(c) Consider use of a flow diagram
+(c) Consider use of a flow diagram -->
+
+ ```{r main, echo=FALSE}
+library(DiagrammeR)
+library(glue)
+source("main.R") ## This "imports" the main script file of your project and run any code in it
+
+# Flowchart figure -----------------------------------------------------------
+
+## Labels for figure ---------------------------------------------------------
+
+label_A <- glue("Trauma registry 2012–2023\n{_n_total_merged_data} patients")
+label_B <- glue("Identified TBI using AIS 1xxxxx.x\n{n_tbi_TBI_only_data} patients with TBI")
+label_C <- glue("Excluded:\n<18 years: {n_under18}\nDead on arrival: {n_doa}")
+label_D <- glue("Linked with trauma care quality database\nExcluded: no OFI outcome: {n_no_ofi}")
+label_E <- glue("Complete-case selection\nExcluded: missing data in covariates: {n_missing_cc}")
+label_F <- glue("Final analytic cohort\n{n_final} adult TBI patients\nOFI: {n_ofi} ({round(100*n_ofi/n_final,1)}%) | No OFI: {n_final - n_ofi}")
+
+## Render flowchart ----------------------------------------------------------
+
+grViz(glue("
+digraph TBI_flow {{
+
+graph [rankdir = TB]
+
+node [shape = box, 
+fontname = 'Times New Roman', 
+fontsize = 12, 
+width = 3]
+
+A [label = '{label_A}']
+B [label = '{label_B}']
+C [label = '{label_C}']
+D [label = '{label_D}']
+E [label = '{label_E}']
+F [label = '{label_F}']
+
+A -> B -> C -> D -> E -> F
+}}
+"))
+
+```
+
+<!-- 
 
 Descriptive data
 ----------------
