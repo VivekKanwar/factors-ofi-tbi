@@ -49,6 +49,7 @@ merged.data <- merged.data %>%
 TBI.only.data <- merged.data %>% filter(TBI)
 
 # Cant find DOA as a variable, but filter the data so that they are excluded 
+# Also filter patients <18 years 
 
 TBI.only.data <- TBI.only.data %>%
   Add_OnCall(datetime_col = "DateTime_ArrivalAtHospital") %>%
