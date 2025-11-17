@@ -6,16 +6,19 @@ library(rofi) # installed using remotes::install_github("martingerdin/rofi")
 # --- Organising raw data ------------------------------------------
 
 # Import data
-data <- import_data()
+data <- import_data(test = TRUE)
 
 # Merge data and remove duplicate variables/columns
-merged.data <- merge_data(data)
+merged.data <- merge_data(data, test = TRUE)
 merged.data <- merged.data[, !duplicated(names(merged.data))]
 
 # Add opportunities for improvement outcome and making it a factor
 merged.data$ofi <- create_ofi(merged.data)
 merged.data <- merged.data %>%
   dplyr::mutate(ofi = factor(ofi, levels = c("No","Yes"))) 
+
+n_total_merged_data <- nrow(merged.data)
+
 
 # --- Adding TBI to data --------------------------------------------------
 
@@ -47,6 +50,7 @@ merged.data <- merged.data %>%
 
 # Making dataset with only patients that have TBI
 TBI.only.data <- merged.data %>% filter(TBI)
+n_TBI_only_data <- sum(TBI.only.data$TBI)
 
 # Cant find DOA as a variable, but filter the data so that they are excluded 
 # Also filter patients <18 years 
@@ -85,8 +89,16 @@ Variables_wanted <- c(
 # Filtering my dataset to only the variables i want, including RTS and On call. How they are derived can be seen in Variable_filter
 TBI.only.filtered <- TBI.only.data %>% select(all_of(Variables_wanted))
 
-# Removing patients with missing Ofi, not really final sample because for my regression i will be removing all patients with missing 
-Analysis.sample <- Remove_missing_ofi(TBI.only.filtered) 
+# Excluding individuals that are under 18
+n_under18 <- sum(TBI.only.filtered$pt_age_yrs < 18) 
+
+TBI.only.filtered <- TBI.only.filtered %>% 
+  filter(pt_age_yrs >= 18)
+
+# Removing patients with missing Ofi
+n_no_ofi <- sum(is.na(TBI.only.filtered$ofi))
+
+Analysis.sample <- Remove_missing_ofi(TBI.only.filtered)
 
 # --- Descriptive table -------------------------------------------
 
@@ -163,7 +175,7 @@ Descriptive.table1 # First baseline descriptive table
 
 ## --- Choosing predictors/variables and dropping NA values --------------------
 
-exclude_vars <- c("NISS", "ed_gcs_cat", "ed_sbp_cat", "ed_rr_cat","TBI_sev_cat")
+exclude_vars <- c("NISS", "ed_gcs_cat", "ed_sbp_cat", "ed_rr_cat","TBI_sev_cat", "iva_dagar_n")
 
 Complete.analysis.sample <- Analysis.sample %>%
   Variable_Organiser() %>%
@@ -173,8 +185,16 @@ Predictors <- Variables_ordered %>%
   intersect(names(Complete.analysis.sample)) %>%
   setdiff(exclude_vars)
 
+n_eligible <- nrow(Complete.analysis.sample)
+
 Complete.analysis.sample <- Complete.analysis.sample %>%  
   filter(if_all(all_of(Predictors), ~ !is.na(.)))
+
+n_final <- nrow(Complete.analysis.sample)
+
+n_missing_cc <- n_eligible - n_final
+
+n_ofi <- sum(Complete.analysis.sample$ofi == "Yes")
 
 ## --- Model that produces simple regression results -------------
 
@@ -215,7 +235,7 @@ Labels_regression_tables <- list(
   host_vent_days_NotDone ~ "Mechanical ventilation",
   OnCall ~ "On-call times",
   host_care_level ~ "Hospital care level",
-  iva_dagar_n ~ "ICU length of stay (days)",
+  # iva_dagar_n ~ "ICU length of stay (days)",
   hosp_los_days ~ "Hospital length of stay (days)"
 )
 

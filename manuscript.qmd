@@ -1,6 +1,6 @@
 ---
 title: "Manuscript title here"
-output: html_document
+format: html
 author: "Your name here"
 bibliography: bibliography.bib
 csl: vancouver.csl
@@ -9,6 +9,7 @@ csl: vancouver.csl
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
 
 <!-- This is an R Markdown document. Markdown is a simple formatting
 syntax for authoring HTML, PDF, and MS Word documents. For more
@@ -30,51 +31,45 @@ title, for example: "Associations between resuscitation interventions
 and opportunities for improvement in adult trauma patients: A cohort
 study" -->
 
-Abstract
-========
+# Abstract
+
+Hello
 
 <!-- Provide in the abstract an informative and balanced summary of
 what was done and what was found. Not more than 300 words. -->
 
-Background
-----------
 
-Methods
--------
+## Background
 
-Results
--------
+## Methods
 
-Conclusion
-----------
+## Results
 
-Introduction
-============
+## Conclusion
+
+# Introduction
 
 <!-- Explain the scientific background and rationale for the
 investigation being reported. End by stating the aim or specific
 objectives, including any prespecified hypotheses. The introduction
 should not be longer than 1-1.5 pages, typically 4-5 paragraphs, each
-6-8 lines long. Support every statement with a citation -->....
+6-8 lines long. Support every statement with a citation -->
 
 
 
-Methods 
-=======
+# Methods
 
-Study design 
-------------
+## Study design
 
 <!-- Present key elements of study design -->
 
-Setting
--------
+## Setting
 
 <!-- Describe the setting, locations, and relevant dates, including
 periods of recruitment, exposure, follow-up, and data collection -->
 
-Participants
-------------
+
+## Participants
 
 <!-- Cohort study: Give the eligibility criteria, and the sources and
 methods of selection of participants. Describe methods of
@@ -90,8 +85,7 @@ of controls per case -->
 <!-- Cross-sectional study: Give the eligibility criteria, and the
 sources and methods of selection of participants -->
 
-Variables and data sources/measurements
----------------------------------------
+## Variables and data sources/measurements
 
 <!-- Clearly define all outcomes, exposures, predictors, potential
 confounders, and effect modifiers. Give diagnostic criteria, if
@@ -99,25 +93,23 @@ applicable. For each variable of interest, give sources of data and
 details of methods of assessment (measurement). Describe comparability
 of assessment methods if there is more than one group -->
 
-Bias 
-----
+
+## Bias
 
 <!-- Describe any efforts to address potential sources of bias -->
 
-Study size 
-----------
+## Study size
 
 <!-- Explain how the study size was arrived at -->
 
-Quantitative variables
-----------------------
+## Quantitative variables
 
 <!-- Explain how quantitative variables were handled in the
 analyses. If applicable, describe which groupings were chosen and why
 -->
 
-Statistical methods
--------------------
+
+## Statistical methods
 
 <!-- 
 
@@ -141,13 +133,10 @@ taking account of sampling strategy
 (e) Describe any sensitivity analyses
 -->
 
-Results
-=======
 
+# Results
 
-
-Participants
-------------
+## Participants
 
 <!-- (a) Report numbers of individuals at each stage of study—eg numbers
 potentially eligible, examined for eligibility, confirmed eligible,
@@ -157,44 +146,134 @@ included in the study, completing follow-up, and analysed
 
 (c) Consider use of a flow diagram -->
 
- ```{r main, echo=FALSE}
+
+```{r flowchart, echo=FALSE}
+
 library(DiagrammeR)
 library(glue)
+library(tidyverse)
+library(gtsummary)
+library(DiagrammeRsvg)
+library(rsvg)         
 source("main.R") ## This "imports" the main script file of your project and run any code in it
 
 # Flowchart figure -----------------------------------------------------------
 
-## Labels for figure ---------------------------------------------------------
+# ---- Counts for intermediate steps -----------------------------------------
+n_excl_step1 <- n_total_merged_data - n_TBI_only_data
+n_excl_step2 <- n_under18 + n_no_ofi
 
-label_A <- glue("Trauma registry 2012–2023\n{_n_total_merged_data} patients")
-label_B <- glue("Identified TBI using AIS 1xxxxx.x\n{n_tbi_TBI_only_data} patients with TBI")
-label_C <- glue("Excluded:\n<18 years: {n_under18}\nDead on arrival: {n_doa}")
-label_D <- glue("Linked with trauma care quality database\nExcluded: no OFI outcome: {n_no_ofi}")
-label_E <- glue("Complete-case selection\nExcluded: missing data in covariates: {n_missing_cc}")
-label_F <- glue("Final analytic cohort\n{n_final} adult TBI patients\nOFI: {n_ofi} ({round(100*n_ofi/n_final,1)}%) | No OFI: {n_final - n_ofi}")
+# ---- Labels ----------------------------------------------------------------
+label_A <- glue(
+  "Trauma registry 2012–2023\n",
+  "n = {n_total_merged_data}"
+)
 
-## Render flowchart ----------------------------------------------------------
+label_B <- glue(
+  "Identified TBI using AIS 1xxxxx.x\n",
+  "n = {n_TBI_only_data}"
+)
 
-grViz(glue("
+label_C <- glue(
+  "Eligible adult TBI patients\n",
+  "with OFI outcome\n",
+  "n = {n_eligible}"
+)
+
+label_D <- glue(
+  "Included (final analytic cohort)\n",
+  "n = {n_final} adult TBI patients\n",
+  "- OFI: {n_ofi} ({round(100 * n_ofi / n_final, 1)}%)\n",
+  "- No OFI: {n_final - n_ofi}"
+)
+
+label_excl1 <- glue( 
+  "Excluded (n = {n_excl_step1}):\n",
+  "- No TBI according to AIS code"
+  )
+
+label_excl2 <- glue(
+  "Excluded (n = {n_excl_step2}):\n",
+  "- Age < 18 years: {n_under18}\n",
+  "- No OFI outcome: {n_no_ofi}"
+)
+
+label_excl3 <- glue(
+  "Excluded: missing data\n",
+  "in covariates (n = {n_missing_cc})"
+)
+
+# ---- Producing the figure with exclusion boxes ------------------------------
+
+g <- grViz(glue("
 digraph TBI_flow {{
 
-graph [rankdir = TB]
+  graph [
+    rankdir = TB,
+    splines = ortho
+  ]
 
-node [shape = box, 
-fontname = 'Times New Roman', 
-fontsize = 12, 
-width = 3]
+  node [
+    shape = box,
+    style = rounded,
+    fontname = 'Times New Roman',
+    fontsize = 12,
+    width = 3
+  ]
 
-A [label = '{label_A}']
-B [label = '{label_B}']
-C [label = '{label_C}']
-D [label = '{label_D}']
-E [label = '{label_E}']
-F [label = '{label_F}']
+  edge [
+    arrowhead = normal
+  ]
 
-A -> B -> C -> D -> E -> F
+  // Main vertical line
+  A [label = '{label_A}']
+  B [label = '{label_B}']
+  C [label = '{label_C}']
+  D [label = '{label_D}']
+
+  // Side exclusion boxes
+  E1 [label = '{label_excl1}']
+  E2 [label = '{label_excl2}']
+  E3 [label = '{label_excl3}']
+
+  // Invisible junction nodes on the vertical line
+  J1 [shape=point, width=0.001, label=\"\", style=invis]
+  J2 [shape=point, width=0.001, label=\"\", style=invis]
+  J3 [shape=point, width=0.001, label=\"\", style=invis]
+
+  // Main vertical line
+  A -> J1 [arrowhead=none] 
+  J1 -> B       
+  B -> J2 [arrowhead=none] 
+  J2 -> C 
+  C -> J3 [arrowhead=none]
+  J3 -> D
+  
+  // Branching arrows from the vertical line to exclusions
+  J1 -> E1
+  J2 -> E2
+  J3 -> E3
+
+  // Keep exclusions horizontally aligned with the junctions
+  {{rank=same; J1; E1}}
+  {{rank=same; J2; E2}}
+  {{rank=same; J3; E3}}
+
 }}
 "))
+
+# ---- Export (SVG + PNG) ----
+svg_txt <- DiagrammeRsvg::export_svg(g)
+
+dir.create("assets", showWarnings = FALSE)
+
+out_svg <- file.path("assets", "flowchart.svg")
+out_png <- file.path("assets", "flowchart.png")
+
+cat(svg_txt, file = out_svg)
+rsvg_png(out_svg, file = out_png, width = 1600, height = 2600)
+
+knitr::include_graphics(out_png)
 
 ```
 
@@ -245,6 +324,7 @@ Report other analyses done—eg analyses of subgroups and interactions,
 and sensitivity analyses 
 -->
 
+
 You can include code in this document like this:
 
 ```{r main, echo=FALSE}
@@ -259,8 +339,7 @@ plot(pressure)
 
 You can also mix text and code, so called inline code, like this: `r 2+5`.
 
-Discussion
-==========
+# Discussion
 
 <!--
 
@@ -289,12 +368,11 @@ Discuss the generalisability (external validity) of the study results
 
 -->
 
-Conclusion
-==========
+
+# Conclusion
 
 <!-- Give a short conclusion, corresponding to the aim -->
 
-References
-==========
+# References
 
 <!-- Do not edit by hand, references will be inserted and formatted automatically once you knit this document -->
