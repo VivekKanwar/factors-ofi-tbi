@@ -33,6 +33,7 @@ study" -->
 
 # Abstract
 
+
 Hello
 
 <!-- Provide in the abstract an informative and balanced summary of
@@ -265,23 +266,19 @@ digraph TBI_flow {{
 # ---- Export (SVG + PNG) ----
 svg_txt <- DiagrammeRsvg::export_svg(g)
 
-dir.create("assets", showWarnings = FALSE)
-
 out_svg <- file.path("assets", "flowchart.svg")
 out_png <- file.path("assets", "flowchart.png")
 
 cat(svg_txt, file = out_svg)
 rsvg_png(out_svg, file = out_png, width = 1600, height = 2600)
 
-knitr::include_graphics(out_png)
-
 ```
 
-<!-- 
+![**Figure 1. Flowchart of patient selection for the analytical cohort**](assets/flowchart.png)
 
-Descriptive data
-----------------
+## Descriptive data
 
+<!--  
 (a) Give characteristics of study participants (eg demographic,
 clinical, social) and information on exposures and potential
 confounders
@@ -291,10 +288,10 @@ variable of interest
 
 (c) Cohort study — Summarise follow-up time (eg, average and total
 amount)
+-->
+## Outcome data
 
-Outcome data
-------------
-
+<!--  
 Cohort study — Report numbers of outcome events or summary measures
 over time
 
@@ -303,10 +300,11 @@ summary measures of exposure
 
 Cross-sectional study — Report numbers of outcome events or summary
 measures
+-->
 
-Main results
-------------
+##  Main results
 
+<!--  
 (a) Give unadjusted estimates and, if applicable, confounder-adjusted
 estimates and their precision (eg, 95% confidence interval). Make
 clear which confounders were adjusted for and why they were included
@@ -316,10 +314,11 @@ categorized
 
 (c) If relevant, consider translating estimates of relative risk into
 absolute risk for a meaningful time period
+-->
 
-Other analyses 
---------------
+## Other analyses 
 
+<!--  
 Report other analyses done—eg analyses of subgroups and interactions,
 and sensitivity analyses 
 -->
@@ -341,31 +340,32 @@ You can also mix text and code, so called inline code, like this: `r 2+5`.
 
 # Discussion
 
+## Key results
+
 <!--
-
-Key results
------------
 Summarise key results with reference to study objectives
+-->
 
-Limitations
------------
+## Limitations
 
+<!--
 Discuss limitations of the study, taking into account sources of
 potential bias or imprecision.  Discuss both direction and magnitude
 of any potential bias
+-->
 
-Interpretation
---------------
+## Interpretation
 
+<!--
 Give a cautious overall interpretation of results considering
 objectives, limitations, multiplicity of analyses, results from
 similar studies, and other relevant evidence
+-->
 
-Generalisability
-----------------
+## Generalisability
 
+<!--
 Discuss the generalisability (external validity) of the study results
-
 -->
 
 
