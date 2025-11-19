@@ -14,6 +14,6 @@ Get_TBI_Severity <- function(AIS_code) {
   AIS.sev <- suppressWarnings(as.numeric(str_extract(AIS_code, "([0-6])$")))
   if (all(is.na(AIS.sev))) return(NA_real_)
   
-  # Return the most severe/max AIS value among the patient's 140-codes.
+  # Return the most severe/max AIS value among the patient's 1-codes.
   max(AIS.sev, na.rm = TRUE)
 }
