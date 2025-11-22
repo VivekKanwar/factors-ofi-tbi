@@ -2,7 +2,12 @@ noacsr::source_all_functions()
 
 # Load packages
 library(rofi) # installed using remotes::install_github("martingerdin/rofi")
-
+library(gtsummary)
+library(tidyverse)
+library(stringr)
+library(DiagrammeR)
+library(rsvg)
+library(flextable)
 # --- Organising raw data ------------------------------------------
 
 # Import data
@@ -245,26 +250,43 @@ SR.Table1 <- tbl_uvregression(
   data = Complete.analysis.sample,
   y = ofi,
   method = glm,
-  method.args = list(family=binomial),
+  method.args = list(family = binomial),
   exponentiate = TRUE,
   include = all_of(Predictors),
   hide_n = TRUE,
-  conf.level = 0.95,
   conf.int = TRUE,
+  conf.level = 0.95,
   pvalue_fun = label_style_pvalue(digits = 3),
   label = Labels_regression_tables, 
   missing = "ifany",
   missing_text = "No data"
 ) %>%
   bold_labels() %>%
+  modify_table_body(
+    ~ .x %>%
+      mutate(
+        OR_CI = dplyr::if_else(
+          !is.na(estimate) & !is.na(conf.low) & !is.na(conf.high),
+          paste0(
+            sprintf("%.2f", estimate), " (",
+            sprintf("%.2f", conf.low), ", ",
+            sprintf("%.2f", conf.high), ")"
+          ),
+          NA_character_  # blank for reference rows
+        )
+      ) %>%
+      relocate(OR_CI, .after = label)
+  ) %>%
+  modify_column_hide(columns = c(estimate, conf.low, conf.high)) %>%
   modify_header(
-    label = "**Characteristics/Predictors**",
-    estimate = "***Unadjusted*** **OR**",
-    conf.low = "**95% CI**",            
-    p.value = "**p-value**" 
-  ) %>% 
-  modify_caption("**Table 2. Unadjusted logistic regression analyses of associations between patient level factors 
-  and opportunities for improvement in TBI patients**")
+    label   = "**Characteristics/Predictors**",
+    OR_CI   = "**Unadjusted OR (95% CI)**",
+    p.value = "**p-value**"
+  ) %>%
+  modify_caption(
+    "**Table 2. Unadjusted logistic regression analyses of associations between patient level factors 
+and opportunities for improvement in TBI patients**")
+
 
 SR.Table1 # Table describing unadjusted associations 
 
@@ -310,13 +332,89 @@ MV.Table1 <- tbl_regression(
   missing_text = "No data"
 ) %>%
   bold_labels() %>%
+  modify_table_body(
+    ~ .x %>%
+      dplyr::mutate(
+        OR_CI = if_else(
+          !is.na(estimate) & !is.na(conf.low) & !is.na(conf.high),
+          paste0(
+            sprintf("%.2f", estimate), " (",
+            sprintf("%.2f", conf.low), ", ",
+            sprintf("%.2f", conf.high), ")"
+          ),
+          NA_character_  # blank for reference rows
+        )
+      ) %>%
+      relocate(OR_CI, .after = label)
+  ) %>%
+  modify_column_hide(columns = c(estimate, conf.low, conf.high)) %>%
   modify_header(
-    label = "**Characteristics/Predictors**",
-    estimate = "***Adjusted*** **OR**",
-    conf.low = "**95% CI**",            
+    label   = "**Characteristics/Predictors**",
+    OR_CI   = "***Adjusted*** **OR (95% CI)**",
     p.value = "**p-value**"
   ) %>% 
-  modify_caption("**Table 3. Adjusted logistic regression analyses of associations between patient level factors 
-  and opportunities for improvement in TBI patients**")
+  modify_caption(
+    "**Table 3. Adjusted logistic regression analyses of associations between patient level factors 
+and opportunities for improvement in TBI patients**"
+  )
 
 MV.Table1 # Table describing adjusted associations
+
+
+# --- Merging SR and MV tables -----------------------------------------------
+
+Merged.Table <- tbl_merge(
+  tbls = list(SR.Table1, MV.Table1)
+) %>%
+  modify_table_body(
+    ~ .x %>%
+      mutate(
+        # Unadjusted OR (CI)
+        OR_CI_1 = if_else(
+          !is.na(estimate_1) & !is.na(conf.low_1) & !is.na(conf.high_1),
+          paste0(
+            sprintf("%.2f", estimate_1), " (",
+            sprintf("%.2f", conf.low_1), ", ",
+            sprintf("%.2f", conf.high_1), ")"
+          ),
+          NA_character_
+        ),
+        # Adjusted OR (CI)
+        OR_CI_2 = if_else(
+          !is.na(estimate_2) & !is.na(conf.low_2) & !is.na(conf.high_2),
+          paste0(
+            sprintf("%.2f", estimate_2), " (",
+            sprintf("%.2f", conf.low_2), ", ",
+            sprintf("%.2f", conf.high_2), ")"
+          ),
+          NA_character_
+        )
+      ) %>%
+      # Final visible column order
+      select(label, OR_CI_1, p.value_1, OR_CI_2, p.value_2,everything())
+  ) %>%
+  # Hide old numeric columns
+  modify_column_hide(
+    columns = c(
+      estimate_1, conf.low_1, conf.high_1,
+      estimate_2, conf.low_2, conf.high_2
+    )
+  ) %>%
+  # Set column headers
+  modify_header(
+    label     = "**Characteristics/Predictors**",
+    OR_CI_1   = "**OR (95% CI)**",
+    p.value_1 = "**p-value**",
+    OR_CI_2   = "**OR (95% CI)**",
+    p.value_2 = "**p-value**"
+  ) %>%
+  # Now explicitly define the spanners
+  modify_spanning_header(
+    c("OR_CI_1", "p.value_1") ~ "**Unadjusted**",
+    c("OR_CI_2", "p.value_2") ~ "**Adjusted**"
+  ) %>%
+  modify_caption(
+    "**Table 4. Unadjusted and adjusted logistic regression analyses of associations between patient-level factors and opportunities for improvement in TBI patients**"
+  )
+
+Merged.Table
