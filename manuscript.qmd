@@ -370,10 +370,7 @@ similar studies, and other relevant evidence
 
 ## Generalisability
 
-<!--
-Discuss the generalisability (external validity) of the study results
--->
-
+<!-- Discuss the generalisability (external validity) of the study results -->
 
 # Conclusion
 
