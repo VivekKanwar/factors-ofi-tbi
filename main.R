@@ -1,6 +1,6 @@
 noacsr::source_all_functions()
 
-# Load packages
+# --- Loading packages ---------------------------------------------------------
 library(rofi) # installed using remotes::install_github("martingerdin/rofi")
 library(gtsummary)
 library(broom)
@@ -332,7 +332,7 @@ and opportunities for improvement in TBI patients**"
   )
 # MV.Table1 # Table describing adjusted associations
 
-# -----Combined unadjusted & adjusted table (Table2) --------------------------
+# ---- Combined unadjusted & adjusted table (Table2) --------------------------
 
 Merged.Table <- tbl_merge(
   tbls = list(SR.Table1, MV.Table1),

@@ -1,7 +1,7 @@
 ---
-title: "Manuscript title here"
+title: "Opportunities for improvement in the care of adult patients with traumatic brain injury"
 format: html
-author: "Your name here"
+author: "Vivek Kanwar"
 bibliography: bibliography.bib
 csl: vancouver.csl
 ---
@@ -32,18 +32,23 @@ and opportunities for improvement in adult trauma patients: A cohort
 study" -->
 
 # Abstract
-
 <!-- Provide in the abstract an informative and balanced summary of
 what was done and what was found. Not more than 300 words. -->
-
-
 ## Background
+
+Traumatic brain injury (TBI) is a major cause of death and disability after trauma. Trauma quality programmes increasingly use “opportunities for improvement” (OFI) to identify deviations from optimal care, but patterns of OFI in adult TBI are not well described. As such, this study aims to determine if and how often OFIs occur in the care of adult patients with TBI, describe their main characteristics, and examine whether patient- and process-related factors are associated with OFI 
 
 ## Methods
 
+A registry-based retrospective cohort study at Karolinska University Hospital in Solna, Sweden, centre using the local trauma registry (2012–2023) linked to the hospital’s trauma care quality database was conducted. Adult TBI patients were identified using the Abbreviated Injury Scale (AIS). The outcome was the presence of at least one OFI, classified as yes/no through a standardised multidisciplinary review. Patient- and process-related variables were analysed in complete-case logistic regression models with OFI status as the dependent variable. 
+ 
 ## Results
 
+OFIs were identified in 7.7% of TBI patients. In adjusted analyses, higher ISS (adjusted OR 1.05, 95% CI 1.03–1.07), higher Revised Trauma Score (adjusted OR 1.32, 95% CI 1.03–1.72; p = 0.034), admission to a high-dependency unit compared to the emergency ward (adjusted OR 3.50, 95% CI 1.30–11.13) and longer hospital stay (adjusted OR 1.02 per day, 95% CI 1.00–1.04) were independently associated with OFI. 
+
 ## Conclusion
+
+In this adult TBI cohort, OFIs were relatively uncommon but found in patients with high anatomical injury burden, seemingly stable physiology, intermediate care levels and longer hospital stays. These patterns suggest that trauma quality improvement efforts may be particularly relevant in TBI patients with complex care trajectories and those who appear physiologically stable despite substantial injury burden.
 
 # Introduction
 
@@ -52,7 +57,21 @@ investigation being reported. End by stating the aim or specific
 objectives, including any prespecified hypotheses. The introduction
 should not be longer than 1-1.5 pages, typically 4-5 paragraphs, each
 6-8 lines long. Support every statement with a citation -->
+Traumatic injury is a major global health problem and a leading cause of death and disability, particularly among people younger than 45 years [@Maerz2009]. Within this burden, traumatic brain injury (TBI) accounts for a large proportion of trauma-related mortality and long-term neurological impairment and has been highlighted as a priority area for trauma systems (2,3). TBI arises when external forces causes acute neurological impairment and initiate both primary structural damage and secondary pathophysiological cascades, including oedema, ischemia and metabolic disturbances which develop over time and critically influence long-term outcomes (4,5). 
 
+## Management of TBI 
+
+After initial stabilisation, management of TBI focuses on preventing secondary brain injury by securing the airway, ensuring adequate ventilation and rapidly correcting hypotension, as lapses in these areas are associated with increased mortality (6-9). In terms of imaging, rapid non-contrast head CT is essential to detect surgically liable lesions, while in patients with multi-system trauma, whole-body CT may be considered (10,11). International guidelines and reviews, including those from the Brain Trauma Foundation (BTF), provide recommendations on monitoring, control of intracranial- and cerebral perfusion pressure, and avoidance of potentially harmful interventions such as corticosteroids (5,7,13-15). Despite these frameworks, the heterogeneous and dynamic nature of TBI makes care particularly susceptible to delays, omissions and deviations from optimal practice (5,7,13). 
+
+## Trauma Quality Improvement
+
+To address such vulnerabilities in trauma cohorts, trauma quality improvement programmes (TQIPs) systematically evaluate care processes and outcomes. These programmes use audit filters, structured case reviews and multidisciplinary morbidity and mortality conferences to find “opportunities for improvement” (OFI), defined as deviations from optimal care that may have contributed to adverse outcomes or  preventable harm (17-19). The World Health Organization and the American College of Surgeons provide guidance on how these programmes should be organised, emphasising continuous, multidisciplinary review of trauma cases and feedback to clinicians (18,19).
+
+Previous studies in general trauma populations, and in mature trauma settings even, have shown that deviations and potentially preventable outcomes often arise from shortcomings in areas regarding, airway management, haemorrhage control, resuscitation and delays in imaging or missed injuries (3,20-23). Within this framework, patterns focused specifically on TBI is more limited. Studies of preventable or potentially preventable TBI deaths report recurrent issues such as delayed neurosurgical intervention, suboptimal early resuscitation and inadequate monitoring, suggesting that TBI may carry distinct vulnerabilities along the trauma pathway (24,25). 
+
+## Rationale for this study
+
+TBI remains a challenge in modern system because even small deviations from optimal practice can markedly worsen outcomes. Although TQIPs aim to identify and correct such lapses, most research has focused on mixed trauma cohorts, leaving TBI-specific vulnerabilities under-characterised where also recent work suggests that patients with TBI remain at risk of OFIs (26). As such, this study aims to determine whether OFIs occur in the care of adult trauma patients with TBI, and, if so, to quantify their frequency, describe their characteristics, and examine whether patient- and process-related factors are associated with their occurrence.
 
 # Methods
 
@@ -146,12 +165,8 @@ included in the study, completing follow-up, and analysed
 
 ```{r flowchart, echo=FALSE}
 
-library(DiagrammeR)
 library(glue)
-library(tidyverse)
-library(gtsummary)
 library(DiagrammeRsvg)
-library(rsvg)         
 source("main.R") ## This "imports" the main script file of your project and run any code in it
 
 # Flowchart figure -----------------------------------------------------------
@@ -316,12 +331,9 @@ absolute risk for a meaningful time period
 -->
 
 ```{r}
-SR.Table1
+Merged.Table
 ```
 
-```{r}
-MV.Table1
-```
 ## Other analyses 
 
 <!--  
