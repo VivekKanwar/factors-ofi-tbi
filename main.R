@@ -13,10 +13,10 @@ library(flextable)
 # --- Organising raw data -----------------------------------------------------
 
 ## ---- Import & merge raw data -----------------------------------------------
-data <- import_data()
+data <- import_data(test=TRUE)
 
 # Merge data and remove duplicate variables/columns
-merged.data <- merge_data(data) 
+merged.data <- merge_data(data, test=TRUE) 
 merged.data <- merged.data[, !duplicated(names(merged.data))]
 
 ## ---- OFI outcome -----------------------------------------------------------
@@ -29,29 +29,39 @@ n_total_merged_data <- nrow(merged.data)
 
 ## --- Adding TBI to data --------------------------------------------------
 
-#Identifying the columns/variables that have the AIS Code (String)
-AIS_columns <- grep("^AISCode_", names(merged.data), value = TRUE) 
+# Identifying the columns/variables that have the ICD Code (String)
+ICD_columns <- grep("^ICD_", names(merged.data), value = TRUE) 
 
-# Adding column to data that indicates whether the patient has TBI or not 
-# And also what severity of TBI
+# Adding column to data that indicates whether the patient has TBI or not
 merged.data <- merged.data %>%
   mutate(
-    
-    # Get max AIS severity among 1-codes
-    TBI_sev_num = apply(select(., all_of(AIS_columns)), 1, Get_TBI_Severity),
-    
-    # 2) TBI = had any 1-code
-    TBI = !is.na(TBI_sev_num),
-    
-    # Map to categories
-    TBI_sev_cat = case_when(
-      is.na(TBI_sev_num)   ~ NA_character_,
-      TBI_sev_num %in% 1:2 ~ "Mild",
-      TBI_sev_num == 3     ~ "Moderate",
-      TBI_sev_num %in% 4:6 ~ "Severe",
-      TRUE                 ~ NA_character_
-    )
+    TBI = apply(select(., all_of(ICD_columns)), 1, Get_TBI_ICD)
   )
+
+
+# #Identifying the columns/variables that have the AIS Code (String)
+# AIS_columns <- grep("^AISCode_", names(merged.data), value = TRUE) 
+# 
+# # Adding column to data that indicates whether the patient has TBI or not 
+# # And also what severity of TBI
+# merged.data <- merged.data %>%
+#   mutate(
+#     
+#     # Get max AIS severity among 1-codes
+#     TBI_sev_num = apply(select(., all_of(AIS_columns)), 1, Get_TBI_Severity),
+#     
+#     # 2) TBI = had any 1-code
+#     TBI = !is.na(TBI_sev_num),
+#     
+#     # Map to categories
+#     TBI_sev_cat = case_when(
+#       is.na(TBI_sev_num)   ~ NA_character_,
+#       TBI_sev_num %in% 1:2 ~ "Mild",
+#       TBI_sev_num == 3     ~ "Moderate",
+#       TBI_sev_num %in% 4:6 ~ "Severe",
+#       TRUE                 ~ NA_character_
+#     )
+#   )
 
 # --- Filtering data ----------------------------------------------------------
 
@@ -79,7 +89,7 @@ Variables_wanted <- c(
   "inj_dominant",                                                               # Injury type
   "pt_asa_preinjury",                                                           # ASA class
   "host_vent_days_NotDone",                                                     # Mechanical ventilation
-  "TBI_sev_cat",                                                                # Severiy of TBI
+  # "TBI_sev_cat",                                                                # Severiy of TBI
   
   # Continuous 
   "pt_age_yrs",                                                                 # Age
@@ -122,7 +132,10 @@ Variables_ordered <- c( #Could replace variables_wanted?
   # ED physiology
   "ed_gcs_cat", "ed_sbp_cat", "ed_rr_cat",
   # Injury severity (summary scores)
-  "ISS", "NISS", "RTS", "TBI_sev_cat",
+  "ISS", "NISS", "RTS", 
+  
+  # "TBI_sev_cat",
+  
   # Interventions & timeliness
   "Intubation", "dt_ed_first_ct", "host_vent_days_NotDone", 
   # System / care pathway
@@ -133,9 +146,9 @@ Variables_ordered <- c( #Could replace variables_wanted?
 
 ## --- Choosing predictors/variables and dropping NA values --------------------
 
-# Exclude variables due to collinearity (NISS, TBI_sev_cat, ED categories)
+# Exclude variables due to collinearity (NISS, TBI_sev_cat, ED categories). "TBI_sev_cat",
 # or because they overlap conceptually with other included variables (iva_dagar_n)
-exclude_vars <- c("NISS", "ed_gcs_cat", "ed_sbp_cat", "ed_rr_cat","TBI_sev_cat", "iva_dagar_n")
+exclude_vars <- c("NISS", "ed_gcs_cat", "ed_sbp_cat", "ed_rr_cat", "iva_dagar_n")
 
 Complete.analysis.sample <- Analysis.sample %>%
   Variable_Organiser() %>%
