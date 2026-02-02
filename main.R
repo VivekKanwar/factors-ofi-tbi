@@ -448,7 +448,7 @@ and opportunities for improvement in TBI patients**"
   )
 # MV.Table1 # Table describing adjusted associations
 
-# ---- Combined unadjusted & adjusted table (Table2) --------------------------
+# ---- Combined unadjusted & adjusted table (Table3) --------------------------
 
 Merged.Table <- tbl_merge(
   tbls = list(SR.Table1, MV.Table1),
